@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAMU VIP MOD V1 - Ultimate Premium Floating Dashboard</title>
+    <title>RAMU VIP ENGINE V2.5 - Full Toggle & Reverse Pattern</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Outfit:wght@600;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -17,20 +17,20 @@
 
         :root {
             --white: #ffffff;
-            --electric-blue: #00d9ff;
-            --luxury-gold: #fbbf24;
-            --danger: #ef4444;
-            --success: #10b981;
-            --dark-panel: rgba(6, 8, 24, 0.96);
-            --vip-glow: 0 0 25px rgba(251, 191, 36, 0.6);
-            --neon-glow: 0 0 20px rgba(0, 217, 255, 0.5);
+            --neon-blue: #00f0ff;
+            --neon-pink: #ff007f;
+            --cyber-purple: #9d4edd;
+            --danger: #ff3333;
+            --success: #00ff66;
+            --dark-glass: rgba(6, 4, 12, 0.98);
+            --cyber-glow: 0 0 25px rgba(0, 240, 255, 0.6);
         }
 
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #040615;
+            background: #020105;
         }
 
         body {
@@ -43,7 +43,7 @@
             display: none !important; 
         }
 
-        /* ========== GAME BACKGROUND BLOCK ========== */
+        /* FULLSCREEN GAME BACKGROUND */
         .game-background {
             position: fixed;
             top: 0;
@@ -54,7 +54,6 @@
             z-index: 1;
         }
 
-        /* ========== MAIN CONTAINER ========== */
         .main-container {
             position: relative;
             width: 100%;
@@ -63,14 +62,14 @@
             pointer-events: none;
         }
 
-        /* LOGIN SCREEN - STRICT OVERLAY */
+        /* PREMIUM LOGIN OVERLAY */
         .auth-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #0f1126 0%, #03040d 100%);
+            background: radial-gradient(circle at center, #0f081d 0%, #020105 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -78,16 +77,15 @@
             pointer-events: auto;
         }
 
-        /* ========== PREMIUM VIP LOGIN PANEL ========== */
         .login-box {
             max-width: 400px;
             width: 90%;
-            background: rgba(10, 14, 31, 0.95);
-            border: 2px solid var(--luxury-gold);
-            box-shadow: var(--vip-glow), inset 0 0 20px rgba(251, 191, 36, 0.2);
-            border-radius: 24px;
+            background: rgba(10, 6, 20, 0.95);
+            border: 2px solid var(--neon-blue);
+            box-shadow: var(--cyber-glow), inset 0 0 20px rgba(0, 240, 255, 0.2);
+            border-radius: 20px;
             padding: 35px 25px;
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(20px);
             text-align: center;
         }
 
@@ -95,453 +93,371 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 30px;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 20%, var(--luxury-gold), var(--electric-blue));
+            background: linear-gradient(135deg, #fff 20%, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+            letter-spacing: 2px;
         }
 
         .login-box p {
             font-size: 11px;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 3px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 2px;
             margin-bottom: 25px;
         }
 
-        /* ========== FLOATING PANEL DESIGN (VIP) ========== */
+        /* SCREEN-FIT EDGE PANELS */
         .glass-box.app-view {
             position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 380px;
-            width: 92%;
-            background: var(--dark-panel);
-            border: 2px solid var(--luxury-gold);
-            border-radius: 22px;
-            padding: 18px;
-            backdrop-filter: blur(25px);
-            box-shadow: var(--vip-glow), inset 0 0 15px rgba(251, 191, 36, 0.15);
+            top: 0; 
+            left: 0;
+            width: 100%;
+            background: var(--dark-glass);
+            border-bottom: 3px solid var(--neon-pink);
+            padding: 12px 15px;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.3);
             z-index: 9999;
             pointer-events: auto;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 1;
+            display: block; /* рдбрд┐рдлрд╝реЙрд▓реНрдЯ рд░реВрдк рд╕реЗ рдмреНрд▓реЙрдХ рд░рд╣реЗрдЧрд╛, рдХрдВрдЯреНрд░реЛрд▓ JS рд╕реЗ рд╣реЛрдЧрд╛ */
         }
 
-        .glass-box.app-view.hidden-panel {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-150px) scale(0.7);
-            pointer-events: none;
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
         .logo-3d {
             font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 900;
-            letter-spacing: 3px;
-            background: linear-gradient(90deg, var(--luxury-gold), #fff, var(--electric-blue));
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-align: center;
-            text-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
-            margin-bottom: 5px;
         }
 
-        /* ========== PREMIUM JOKER TOGGLE BUTTON ========== */
+        .logout-btn {
+            background: transparent;
+            color: var(--neon-pink);
+            border: 1px solid var(--neon-pink);
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .prediction-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 0, 127, 0.08);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        .period-display { font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 600; }
+        .period-display span { display: block; font-size: 13px; color: var(--white); font-family: 'Orbitron', sans-serif; }
+
+        .prediction-value { font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900; color: var(--neon-blue); text-shadow: 0 0 12px var(--neon-blue); }
+
+        .number-box {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--neon-pink);
+            background: rgba(255, 0, 127, 0.15);
+            padding: 2px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 0, 127, 0.4);
+            text-shadow: 0 0 8px var(--neon-pink);
+            text-align: center;
+        }
+
+        .stat-card { 
+            background: rgba(0, 240, 255, 0.03); 
+            border: 1px solid rgba(0, 240, 255, 0.15); 
+            border-radius: 10px; 
+            padding: 6px; 
+            text-align: center; 
+        }
+        .stat-value { font-size: 12px; font-weight: 800; font-family: 'Orbitron', sans-serif; }
+
+        #signalStrength { color: var(--success); text-shadow: 0 0 6px var(--success); }
+        #trendLabel { color: var(--neon-blue); font-size: 11px; text-shadow: 0 0 6px var(--neon-blue); }
+
+        .table-container { 
+            max-height: 90px; 
+            overflow-y: auto; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        table { width: 100%; font-size: 10px; border-collapse: collapse; }
+        th { background: rgba(0, 240, 255, 0.15); color: var(--neon-blue); padding: 6px; font-weight: 800; }
+        td { padding: 5px; text-align: center; background: rgba(10, 6, 20, 0.6); border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        .win { color: var(--success); font-weight: 900; text-shadow: 0 0 6px var(--success); }
+        .loss { color: var(--danger); font-weight: 900; text-shadow: 0 0 6px var(--danger); }
+
+        /* ЁЯЫая╕П ULTRA RESPONSIVE CLICK TOGGLE BUTTON ЁЯЫая╕П */
         .toggle-panel-btn {
             position: fixed;
-            bottom: 35px;
-            right: 25px;
+            bottom: 30px;
+            right: 20px;
             width: 65px;
             height: 65px;
-            background: linear-gradient(135deg, var(--luxury-gold), #b45309);
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
             border: 2px solid var(--white);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
+            cursor: pointer; 
             z-index: 100000;
             pointer-events: auto;
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.8), inset 0 0 15px rgba(255,255,255,0.6);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: floatingBtn 2.5s ease-in-out infinite;
+            animation: blinkingCyber 1s infinite alternate;
         }
 
-        .toggle-panel-btn::before {
-            content: "🃏"; 
-            font-size: 30px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-            transition: transform 0.3s ease;
+        .toggle-panel-btn::before { content: "ЁЯОп"; font-size: 28px; }
+        .toggle-panel-btn.panel-is-hidden::before { content: "ЁЯСБя╕П"; font-size: 28px; }
+
+        @keyframes blinkingCyber {
+            0% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.6); }
+            100% { box-shadow: 0 0 25px rgba(255, 0, 127, 0.9), 0 0 10px var(--cyber-purple); }
         }
 
-        .toggle-panel-btn.panel-is-hidden {
-            background: linear-gradient(135deg, #475569, #1e293b);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.4);
-        }
-        
-        .toggle-panel-btn.panel-is-hidden::before {
-            content: "🎩";
-            transform: scale(0.9);
-        }
-
-        @keyframes floatingBtn {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* ========== INPUT & BUTTONS ========== */
+        /* ACCESS INPUTS */
         input[type="text"] {
             width: 100%;
-            padding: 15px;
-            background: rgba(5, 7, 18, 0.9);
-            border: 2px solid var(--luxury-gold);
-            border-radius: 14px;
-            color: var(--luxury-gold);
+            padding: 14px;
+            background: rgba(5, 3, 10, 0.9);
+            border: 2px solid var(--neon-blue);
+            border-radius: 12px;
+            color: var(--neon-blue);
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             text-align: center;
             outline: none;
             letter-spacing: 2px;
             margin-bottom: 18px;
-            transition: 0.3s;
-        }
-        input[type="text"]:focus {
-            border-color: var(--electric-blue);
-            box-shadow: var(--neon-glow);
-            color: var(--electric-blue);
         }
 
         .btn-main {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(90deg, #b45309, var(--luxury-gold));
+            padding: 14px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--cyber-purple), var(--neon-pink));
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             color: var(--white);
             font-weight: 900;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 2px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
-            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
         }
 
         .telegram-btn {
             display: block;
             text-decoration: none;
             color: #fff;
-            background: linear-gradient(90deg, #0088cc, #00a2ff);
-            padding: 13px;
-            border-radius: 14px;
-            font-size: 12px;
+            background: #0088cc;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: 800;
             margin-top: 15px;
-            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
         }
 
-        #err {
-            color: var(--danger);
-            font-size: 13px;
-            margin-top: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* ========== RESULT DISPLAY ========== */
-        .prediction-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(251, 191, 36, 0.05);
-            border: 1px solid rgba(251, 191, 36, 0.25);
-            padding: 12px 15px;
-            border-radius: 14px;
-            margin: 14px 0;
-        }
-
-        .period-display {
-            font-size: 11px;
-            color: rgba(255,255,255,0.6);
-            font-weight: 700;
-        }
-        .period-display span {
-            display: block;
-            font-size: 15px;
-            color: var(--white);
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 2px;
-        }
-
-        .prediction-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--luxury-gold);
-            text-shadow: 0 0 15px var(--luxury-gold);
-        }
-
-        .opportunities-box {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--electric-blue);
-            background: rgba(0, 217, 255, 0.1);
-            padding: 6px 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 217, 255, 0.3);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 14px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .stat-label {
-            font-size: 9px;
-            color: rgba(255,255,255,0.5);
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-
-        .stat-value {
-            font-size: 14px;
-            font-weight: 800;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        #signalStrength { color: var(--success); text-shadow: 0 0 8px var(--success); }
-        #periodLabel { color: var(--electric-blue); }
-
-        .table-container {
-            max-height: 130px;
-            overflow-y: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(251, 191, 36, 0.15);
-        }
-
-        table {
-            width: 100%;
-            font-size: 11px;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: rgba(251, 191, 36, 0.15);
-            color: var(--luxury-gold);
-            padding: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        td {
-            padding: 8px;
-            text-align: center;
-            background: rgba(4, 6, 21, 0.6);
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .win { color: var(--success); font-weight: 900; text-shadow: 0 0 8px var(--success); }
-        .loss { color: var(--danger); font-weight: 900; text-shadow: 0 0 8px var(--danger); }
-
-        .logout-btn {
-            background: transparent;
-            color: rgba(255,255,255,0.4);
-            border: none;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 12px;
-            transition: 0.3s;
-        }
-        .logout-btn:hover { color: var(--danger); text-shadow: 0 0 5px var(--danger); }
+        #err { color: var(--danger); font-size: 12px; margin-top: 10px; font-weight: 700; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-    <!-- BACKGROUND GAME BLOCK -->
-    <iframe class="game-background" src="https://bdgwinmy.cc//#/register?invitationCode=8261315097340"></iframe>
+    <iframe id="gameFrame" class="game-background" src="https://bdgwinmy.cc//#/register?invitationCode=8261315097340"></iframe>
 
-    <!-- MAIN INTERFACE -->
     <div class="main-container">
-        
-        <!-- LOGIN OVERLAY (STRICTLY LOCKED BY DEFAULT) -->
-        <div id="authBlock" class="auth-wrapper">
+        <!-- AUTH INTERFACE -->
+        <div id="authBlock" class="auth-wrapper" onclick="triggerVoiceInit()">
             <div class="login-box">
-                <h2>RAMU BHAI BOSS V1</h2>
-                <p>PREMIUM AI PREDICTION SYSTEM</p>
-                <div class="input-wrapper">
-                    <input type="text" id="keyIn" placeholder="ENTER LICENSE KEY">
-                </div>
-                <button class="btn-main" onclick="startSystem()">ACTIVATE SYSTEM</button>
+                <h2>RAMU VIP V2.5</h2>
+                <p>REVERSE PATTERN AUTO-TRACKER</p>
+                <input type="text" id="keyIn" placeholder="ENTER ACCESS KEY" onfocus="triggerVoiceInit()">
+                <button class="btn-main" onclick="startSystem()">CONNECT ENGINE</button>
                 <p id="err"></p>
-                <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="telegram-btn">📱 JOIN TELEGRAM GROUP</a>
+                <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="telegram-btn">ЁЯУ▒ TELEGRAM PASSWORD</a>
             </div>
         </div>
 
-        <!-- FLOATING JOKER BUTTON -->
+        <!-- STABLE TOGGLE CONTROLLER -->
         <div id="toggleBtn" class="toggle-panel-btn hidden" onclick="togglePanel()"></div>
 
-        <!-- FLOATING PANEL PAGE -->
+        <!-- TOP COMPACT PANEL -->
         <div id="appPage" class="glass-box app-view hidden">
-            <div class="logo-3d">RAMU BHAI BOSS V1</div>
-
-            <!-- PREDICTION SECTION -->
-            <div class="prediction-section">
-                <div class="period-display">
-                    PERIOD
-                    <span id="pID">--</span>
-                </div>
-                <div class="prediction-value" id="pRes">WAIT</div>
-                <div class="opportunities-box" id="pOpps">N: --</div>
+            <div class="panel-header">
+                <div class="logo-3d">RAMU REVERSE VIP</div>
+                <button class="logout-btn" onclick="logout()">LOCK APP</button>
             </div>
 
-            <!-- STATS GRID -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">SIGNAL</div>
-                    <div class="stat-value" id="signalStrength">--</div>
+            <div class="main-grid">
+                <div class="prediction-section">
+                    <div class="period-display">PERIOD<span id="pID">----</span></div>
+                    <div class="prediction-value" id="pRes">WAIT</div>
                 </div>
+                <div class="number-box" id="pNum">-</div>
                 <div class="stat-card">
-                    <div class="stat-label">LAST ID</div>
-                    <div class="stat-value" id="periodLabel">--</div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.4); margin-bottom:2px;">AI TREND</div>
+                    <div class="stat-value" id="trendLabel">TRACK</div>
                 </div>
             </div>
 
-            <!-- HISTORY TABLE -->
+            <div class="main-grid" style="grid-template-columns: 1.5fr 1.5fr; margin-bottom: 8px;">
+                <div class="stat-card" style="padding: 4px; display: flex; justify-content: space-around; align-items: center;">
+                    <span style="font-size:9px; color:rgba(255,255,255,0.5);">ANTI-LOGIC:</span>
+                    <span class="stat-value" id="signalStrength" style="color: var(--neon-blue);">ACTIVE</span>
+                </div>
+                <div class="stat-card" style="padding: 4px; font-size: 9px; color: var(--success); font-weight:700;">
+                    1M BINGO SHIELD ON
+                </div>
+            </div>
+
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>PERIOD</th>
-                            <th>PRED</th>
-                            <th>RES</th>
+                            <th>ANTI PRED</th>
+                            <th>ACTUAL</th>
                             <th>STATUS</th>
                         </tr>
                     </thead>
                     <tbody id="logs"></tbody>
                 </table>
             </div>
-
-            <button class="logout-btn" onclick="logout()">↳ LOCK SYSTEM</button>
         </div>
     </div>
 
     <script>
-        const BIG_POOL = [5, 6, 7, 8, 9];
-        const SMALL_POOL = [0, 1, 2, 3, 4];
-        let currentOpposites = [];
+        let voiceTriggered = false;
+        let isGameInside = false; 
+        let currentPredSize = "WAIT";
+        let currentPredNum = "-";
+        let lastLoggedId = null;
 
-        // TTS वॉयस इंजन
         function speakVoice(text) {
+            if (!isGameInside) return; 
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel(); 
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'hi-IN';
-                utterance.pitch = 1.1;
-                utterance.rate = 0.95;
-                window.speechSynthesis.speak(utterance);
+                const utterance = new SynthesisUtterance(text); // Handling safety wrapper
+                const ut = new SpeechSynthesisUtterance(text);
+                ut.lang = 'hi-IN';
+                ut.pitch = 1.0;
+                ut.rate = 1.0;
+                window.speechSynthesis.speak(ut);
             }
         }
 
+        function triggerVoiceInit() {
+            if (!voiceTriggered) {
+                voiceTriggered = true;
+                if ('speechSynthesis' in window) {
+                    const ut = new SpeechSynthesisUtterance("рдЯреЗрд▓реАрдЧреНрд░рд╛рдо рдЧреНрд░реБрдк рдЬреЙрдЗрди рдХрд░реЗрдВ рдФрд░ рдкрд╛рд╕рд╡рд░реНрдб рдкреНрд░рд╛рдкреНрдд рдХрд░реЗрдВред");
+                    ut.lang = 'hi-IN';
+                    window.speechSynthesis.speak(ut);
+                }
+            }
+        }
+
+        // ================= 100% FIXED SHIELD TOGGLE SYSTEM =================
         function togglePanel() {
             const panel = document.getElementById('appPage');
             const btn = document.getElementById('toggleBtn');
             
-            if (panel.classList.contains('hidden-panel')) {
-                panel.classList.remove('hidden-panel');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
                 btn.classList.remove('panel-is-hidden');
             } else {
-                panel.classList.add('hidden-panel');
+                panel.classList.add('hidden');
                 btn.classList.add('panel-is-hidden');
             }
         }
 
-        // पासवर्ड वेरिफिकेशन गेटकीपर (नो ऑटो-लॉगिन)
-        async function startSystem() {
-            const key = document.getElementById('keyIn').value.trim();
-            
-            if (!key) {
-                document.getElementById('err').innerText = "ENTER LICENSE KEY!";
-                return;
+        // ================= ANTI-PATTERN COUNTER LOGIC =================
+        function advancedAntiPatternEngine(list) {
+            if (!list || list.length < 5) return { size: "SMALL", num: 2, trend: "REVERSE" };
+
+            const numbers = list.slice(0, 15).map(x => parseInt(x.number));
+            const sizes = list.slice(0, 15).map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
+
+            let streak = 1;
+            for(let i = 0; i < sizes.length - 1; i++) {
+                if(sizes[i] === sizes[i+1]) streak++;
+                else break;
             }
 
-            if (key === "RAMU BHAI VIP 12") {
+            let normalPrediction = "BIG";
+            let trendType = "ANTI-BALANCED";
+
+            // рдЯреНрд░реЗрдВрдб рдХреЗ рдЖрдзрд╛рд░ рдкрд░ рдиреЙрд░реНрдорд▓ рдХреИрд▓рдХреБрд▓реЗрд╢рди
+            if (streak >= 3) {
+                normalPrediction = sizes[0]; 
+                trendType = "ANTI-DRAGON";
+            } else if (sizes[0] !== sizes[1] && sizes[1] === sizes[2]) {
+                normalPrediction = sizes[0] === "BIG" ? "SMALL" : "BIG";
+                trendType = "ANTI-1-1";
+            } else {
+                let b = 0, s = 0;
+                sizes.forEach((val, index) => {
+                    if(val === "BIG") b += (15 - index); else s += (15 - index);
+                });
+                normalPrediction = b >= s ? "BIG" : "SMALL";
+                trendType = "ANTI-VIBE";
+            }
+
+            // ЁЯСС REVERSE ALGORITHM (рдЧреЗрдо рдХреА рдЪрд╛рд▓ рдХрд╛ рдмрд┐рд▓реНрдХреБрд▓ рдЙрд▓реНрдЯрд╛ рд░рд┐рдЬрд▓реНрдЯ рджреЗрдирд╛)
+            let finalSize = (normalPrediction === "BIG") ? "SMALL" : "BIG";
+
+            // рдирдВрдмрд░ рдХрд╛ рднреА рдмрд┐рд▓реНрдХреБрд▓ рд░рд┐рд╡рд░реНрд╕ рд╕рд┐рд▓реЗрдХреНрд╢рди
+            let finalNum = 2;
+            if (finalSize === "SMALL") {
+                const safeSmall = [0, 1, 2, 3, 4].filter(n => n !== numbers[0]);
+                finalNum = safeSmall[Math.floor(Math.random() * safeSmall.length)];
+            } else {
+                const safeBig = [5, 6, 7, 8, 9].filter(n => n !== numbers[0]);
+                finalNum = safeBig[Math.floor(Math.random() * safeBig.length)];
+            }
+
+            return { size: finalSize, num: finalNum, trend: trendType };
+        }
+
+        // ================= ENGINE INITIATE =================
+        async function startSystem() {
+            const key = document.getElementById('keyIn').value.trim();
+            if (key === "RAMU BHAI BOSS 1") {
                 document.getElementById('err').innerText = "";
-                
-                // अनलॉक केवल सही पासवर्ड पर ही होगा
                 document.getElementById('authBlock').classList.add('hidden');
-                document.getElementById('appPage').classList.remove('hidden');
-                document.getElementById('toggleBtn').classList.remove('hidden'); 
                 
-                setTimeout(() => {
-                    speakVoice("आपका गेम में स्वागत है। आपको पहले रजिस्टर करना पड़ेगा। रजिस्टर करने के बाद आपको गेम के अंदर पांच सौ या वन के का डिपॉजिट करके आपका अकाउंट एक्टिवेट हो जाएगा।");
-                }, 800);
+                // рд▓реЙрдЧрд┐рди рд╣реЛрддреЗ рд╣реА рдкреИрдирд▓ рдФрд░ рдмрдЯрди рджреЛрдиреЛрдВ рдПрдХреНрдЯрд┐рд╡реЗрдЯ рд╣реЛ рдЬрд╛рдПрдВрдЧреЗ
+                document.getElementById('toggleBtn').classList.remove('hidden'); 
+                document.getElementById('appPage').classList.remove('hidden');
 
                 runLogic();
             } else {
                 document.getElementById('err').innerText = "INVALID LICENSE KEY!";
             }
-        }
-
-        // 🧠 एडवांस पैटर्न डिटेक्टर (पूरी 20 हिस्ट्री का विश्लेषण)
-        function analyzeDeepPatterns(list) {
-            if (!list || list.length < 5) return "BIG";
-
-            // पिछले 20 डेटा का एरे बनाना
-            const sizes = list.slice(0, 20).map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
-            
-            // 1. ड्रैगन / स्ट्रीक पैटर्न चेक (लगातार आना)
-            let currentStreak = 1;
-            for (let i = 0; i < sizes.length - 1; i++) {
-                if (sizes[i] === sizes[i+1]) {
-                    currentStreak++;
-                } else {
-                    break;
-                }
-            }
-
-            // अगर लगातार 5 बार से ज़्यादा एक ही चीज़ आई है, तो ब्रेक होने (रिवर्सल) का समय आ गया है
-            if (currentStreak >= 5) {
-                return sizes[0] === "BIG" ? "SMALL" : "BIG";
-            }
-
-            // 2. अल्टरनेटिंग जिग-जैग पैटर्न चेक (BIG ➔ SMALL ➔ BIG)
-            if (sizes[0] !== sizes[1] && sizes[1] === sizes[2] && sizes[2] !== sizes[3]) {
-                // पैटर्न को जारी रखते हुए अगला रिजल्ट बदलें
-                return sizes[0] === "BIG" ? "SMALL" : "BIG";
-            }
-
-            // 3. वेटेड रेशियो कैलकुलेशन (हालिया पीरियड्स को ज्यादा महत्त्व)
-            let bigScore = 0;
-            let smallScore = 0;
-            
-            list.slice(0, 15).forEach((item, index) => {
-                const num = parseInt(item.number);
-                const weight = (15 - index); // लेटेस्ट डेटा को भारी वेटेज
-                
-                if (num >= 5) {
-                    bigScore += weight;
-                } else {
-                    smallScore += weight;
-                }
-            });
-
-            return bigScore >= smallScore ? "BIG" : "SMALL";
         }
 
         async function runLogic() {
@@ -551,84 +467,71 @@
                 try {
                     const res = await fetch('https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json');
                     const json = await res.json();
+                    
+                    if (json && json.data && json.data.list && json.data.list.length > 0) {
+                        isGameInside = true; 
+                    } else {
+                        isGameInside = false;
+                        return;
+                    }
+
                     const listData = json.data.list;
                     const latest = listData[0];
+                    const actualNum = parseInt(latest.number);
+                    const actualSize = actualNum >= 5 ? "BIG" : "SMALL";
 
-                    // पैटर्न ट्रैकर से प्रेडिक्शन लेना
-                    const nextPred = analyzeDeepPatterns(listData);
+                    // рдирдпрд╛ рд░рд┐рд╡рд░реНрд╕ рдкреИрдЯрд░реНрди рдкреНрд░рд╛рдкреНрдд рдХрд░реЗрдВ
+                    const antiAnalysis = advancedAntiPatternEngine(listData);
 
                     if (window.lastId !== latest.issueNumber) {
-                        const actualSize = parseInt(latest.number) >= 5 ? "BIG" : "SMALL";
-                        let checkAgainst = window.savedPrediction || nextPred;
-
-                        const sameSide = checkAgainst === "BIG" ? BIG_POOL : SMALL_POOL;
-                        const oppSide = checkAgainst === "BIG" ? SMALL_POOL : BIG_POOL;
-
-                        currentOpposites = [
-                            sameSide[Math.floor(Math.random() * sameSide.length)],
-                            oppSide[Math.floor(Math.random() * oppSide.length)]
-                        ];
-
-                        if (window.lastId) {
-                            const isWin = (checkAgainst === actualSize) || currentOpposites.includes(parseInt(latest.number));
+                        
+                        if (window.lastId && lastLoggedId !== latest.issueNumber) {
+                            lastLoggedId = latest.issueNumber;
+                            const isWin = (currentPredSize === actualSize);
                             const statusText = isWin ? 'WIN' : 'LOSS';
 
                             const row = `
                                 <tr>
                                     <td>${latest.issueNumber.slice(-3)}</td>
-                                    <td>${checkAgainst}</td>
-                                    <td>${latest.number}</td>
+                                    <td>${currentPredSize}</td>
+                                    <td>${actualNum}</td>
                                     <td class="${isWin ? 'win' : 'loss'}">${statusText}</td>
                                 </tr>
                             `;
                             document.getElementById('logs').innerHTML = row + document.getElementById('logs').innerHTML;
                             
-                            // विन / लॉस वॉयस रिस्पॉन्स
                             setTimeout(() => {
-                                if (isWin) {
-                                    speakVoice(`रिजल्ट ${actualSize} आया है, आपका बेट विन है!`);
-                                } else {
-                                    speakVoice(`रिजल्ट ${actualSize} आया है, आपका बेट लॉस है!`);
-                                }
+                                if (isWin) speakVoice(`рд╡рд┐рди рд╣реБрдЖ рд╣реИ, рд░рд┐рдЬрд▓реНрдЯ ${actualSize} рдЖрдпрд╛ рд╣реИ`);
+                                else speakVoice(`рд▓реЙрд╕ рд╣реБрдЖ рд╣реИ, рд░рд┐рдЬрд▓реНрдЯ ${actualSize} рдЖрдпрд╛ рд╣реИ`);
                             }, 500);
                         }
 
                         window.lastId = latest.issueNumber;
-                        window.savedPrediction = nextPred;
-                        window.savedOpps = currentOpposites;
+                        currentPredSize = antiAnalysis.size;
+                        currentPredNum = antiAnalysis.num;
 
-                        // अगला प्रेडिक्शन आते ही वॉयस अलर्ट
                         setTimeout(() => {
-                            speakVoice(`अगला प्रेडिक्शन ${nextPred} है`);
-                        }, 4000);
+                            speakVoice(`рдЕрдЧрд▓рд╛ рдкреНрд░реЗрдбрд┐рдХреНрд╢рди ${currentPredSize} рдирдВрдмрд░ ${currentPredNum} рд╣реИ`);
+                        }, 4500);
                     }
 
                     document.getElementById('pID').innerText = (BigInt(latest.issueNumber) + 1n).toString().slice(-4);
-                    document.getElementById('pRes').innerText = nextPred;
-                    document.getElementById('pOpps').innerText = "N: " + currentOpposites.join(",");
-                    document.getElementById('periodLabel').innerText = latest.issueNumber.slice(-3);
-                    document.getElementById('signalStrength').innerText = (85 + Math.random() * 15).toFixed(0) + '%';
+                    document.getElementById('pRes').innerText = currentPredSize;
+                    document.getElementById('pNum').innerText = currentPredNum;
+                    document.getElementById('trendLabel').innerText = antiAnalysis.trend;
 
                 } catch (e) {
-                    document.getElementById('pRes').innerText = 'ERR';
+                    // Fail-safe silently
                 }
-            }, 3000);
+            }, 2000);
         }
 
-        function logout() {
-            location.reload(); // पेज रीफ्रेश करके पूरी तरह रीसेट और लॉक कर देगा
-        }
+        function logout() { location.reload(); }
 
-        // जब भी पेज लोड होगा - यह हमेशा कड़ाई से लॉक ही रहेगा
         window.onload = () => {
             document.getElementById('authBlock').classList.remove('hidden');
-            document.getElementById('appPage').classList.add('hidden');
             document.getElementById('toggleBtn').classList.add('hidden');
-
-            // शुरुआत का टेलीग्राम अलर्ट वॉयस
-            setTimeout(() => {
-                speakVoice("आपको नीचे टेलीग्राम का लिंक दिख रहा होगा, उस पर जाकर आप पासवर्ड मांग सकते हैं।");
-            }, 1000);
+            document.getElementById('appPage').classList.add('hidden');
         };
     </script>
 </body>
