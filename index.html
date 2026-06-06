@@ -3,289 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAMU VIP ENGINE V2.5 - Full Toggle & Reverse Pattern</title>
+    <title>RAMU BHAI MULTI-BROWSER V3</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;600;700;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --white: #ffffff;
+            --bg-base: #09070f;
+            --card-bg: rgba(18, 14, 28, 0.75);
+            --text-main: #f3f0f7;
             --neon-blue: #00f0ff;
             --neon-pink: #ff007f;
-            --cyber-purple: #9d4edd;
-            --danger: #ff3333;
-            --success: #00ff66;
-            --dark-glass: rgba(6, 4, 12, 0.98);
-            --cyber-glow: 0 0 25px rgba(0, 240, 255, 0.6);
+            --warning-red: #ff3344;
+            --success-green: #00ff88;
+            --gold: #ffb700;
         }
+        html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg-base); }
+        body { color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
+        .hidden { display: none !important; }
+        .game-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 1; }
+        .main-container { position: relative; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
+        
+        /* 🚨 WARNING MODAL */
+        .mandatory-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.98); display: flex; justify-content: center; align-items: center; z-index: 999999; pointer-events: auto; backdrop-filter: blur(20px); }
+        .warning-alert-box { max-width: 420px; width: 90%; background: #140f1f; border: 2px solid var(--warning-red); border-radius: 28px; padding: 35px 25px; text-align: center; box-shadow: 0 0 40px rgba(255, 51, 68, 0.25); }
+        .warning-alert-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; color: var(--warning-red); margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px; text-transform: uppercase; }
+        .warning-alert-box p { font-size: 13px; color: #ffccd0; line-height: 1.6; margin-bottom: 22px; text-align: justify; font-weight: 600; }
+        .warning-tele-btn { display: inline-block; width: 100%; text-decoration: none; color: #fff; background: #0088cc; padding: 12px; border-radius: 14px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3); }
+        .ok-close-btn { width: 100%; padding: 14px; background: var(--warning-red); border: none; border-radius: 14px; color: white; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #020105;
-        }
+        /* 🕶️ LOGIN WINDOW */
+        .auth-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050308; display: flex; justify-content: center; align-items: center; z-index: 99999; pointer-events: auto; }
+        .login-box { max-width: 380px; width: 88%; background: #110d1a; border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 40px 25px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .login-box h2 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--text-main); letter-spacing: -0.5px; margin-bottom: 8px; }
+        .login-box p { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        
+        /* 🎛️ PANEL OVERLAY */
+        .glass-box.app-view { position: fixed; top: 0; left: 0; width: 100%; height: auto; background: var(--card-bg); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 12px 20px; backdrop-filter: blur(25px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 9999; pointer-events: auto; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .logo-3d { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; color: var(--neon-blue); }
+        .logout-btn { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        
+        .game-selector { display: flex; gap: 6px; background: rgba(0, 0, 0, 0.3); padding: 4px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04); }
+        .game-tab { padding: 6px 14px; font-size: 11px; font-weight: 700; background: transparent; border: none; color: rgba(255, 255, 255, 0.4); border-radius: 8px; cursor: pointer; }
+        .game-tab.active { background: #221a34; color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2); }
+        
+        .main-grid { display: grid; grid-template-columns: 1.4fr 0.8fr 0.8fr; gap: 12px; align-items: center; margin-bottom: 8px; }
+        .prediction-section { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); padding: 12px 16px; border-radius: 16px; min-height: 54px; position: relative; overflow: hidden; }
+        .period-display { font-size: 9px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 0.5px; }
+        .period-display span { display: block; font-size: 14px; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-top: 2px; }
+        .prediction-value { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--success-green); }
+        .number-box { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--neon-pink); background: rgba(255, 0, 127, 0.05); padding: 12px; border-radius: 16px; border: 1px solid rgba(255, 0, 127, 0.15); text-align: center; min-height: 54px; display: flex; align-items: center; justify-content: center; }
+        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 12px; text-align: center; min-height: 54px; display: flex; flex-direction: column; justify-content: center; }
+        .stat-value { font-size: 11px; font-weight: 700; color: var(--neon-blue); }
+        
+        .warning-overlay-card { background: rgba(255, 51, 68, 0.08); border: 1px solid rgba(255, 51, 68, 0.25); border-radius: 14px; padding: 10px 14px; text-align: center; font-size: 11px; color: #ffb3ba; line-height: 1.4; margin-bottom: 8px; font-weight: 600; display: none; }
+        .shayari-card { background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.8); font-style: italic; line-height: 1.4; margin-bottom: 8px; font-weight: 600; }
+        
+        .table-container { max-height: 90px; overflow-y: auto; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        table { width: 100%; font-size: 11px; border-collapse: collapse; }
+        th { background: rgba(255, 255, 255, 0.03); color: rgba(255,255,255,0.4); padding: 8px; font-weight: 600; text-transform: uppercase; font-size: 9px; letter-spacing: 0.5px; }
+        td { padding: 7px; text-align: center; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.02); color: rgba(255,255,255,0.8); }
+        .win { color: var(--success-green); font-weight: 700; }
+        .loss { color: var(--warning-red); font-weight: 700; }
+        .jackpot-win { color: var(--gold); font-weight: 800; font-family: 'Space Grotesk', sans-serif; }
+        
+        .toggle-panel-btn { position: fixed; bottom: 35px; right: 25px; width: 60px; height: 60px; background: #1c162a; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 100000; pointer-events: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .toggle-panel-btn::before { content: "⚡"; font-size: 24px; color: var(--neon-blue); }
+        .toggle-panel-btn.panel-is-hidden::before { content: "🔒"; font-size: 22px; color: var(--neon-pink); }
+        
+        #keyIn { width: 100%; padding: 14px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; color: var(--neon-blue); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; text-align: center; outline: none; margin-bottom: 20px; }
+        .btn-main { width: 100%; padding: 14px; background: var(--text-main); border: none; border-radius: 14px; color: var(--bg-base); font-weight: 700; font-size: 13px; cursor: pointer; }
+        .telegram-btn { display: block; text-decoration: none; color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 18px; font-weight: 600; letter-spacing: 0.5px; }
+        #err { color: var(--warning-red); font-size: 11px; margin-top: 12px; font-weight: 600; }
 
-        body {
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-            user-select: none;
-        }
-
-        .hidden { 
-            display: none !important; 
-        }
-
-        /* FULLSCREEN GAME BACKGROUND */
-        .game-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 1;
-        }
-
-        .main-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        /* PREMIUM LOGIN OVERLAY */
-        .auth-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #0f081d 0%, #020105 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999; 
-            pointer-events: auto;
-        }
-
-        .login-box {
-            max-width: 400px;
-            width: 90%;
-            background: rgba(10, 6, 20, 0.95);
-            border: 2px solid var(--neon-blue);
-            box-shadow: var(--cyber-glow), inset 0 0 20px rgba(0, 240, 255, 0.2);
-            border-radius: 20px;
-            padding: 35px 25px;
-            backdrop-filter: blur(20px);
-            text-align: center;
-        }
-
-        .login-box h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 30px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 20%, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            letter-spacing: 2px;
-        }
-
-        .login-box p {
-            font-size: 11px;
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-        }
-
-        /* SCREEN-FIT EDGE PANELS */
-        .glass-box.app-view {
-            position: fixed;
-            top: 0; 
-            left: 0;
-            width: 100%;
-            background: var(--dark-glass);
-            border-bottom: 3px solid var(--neon-pink);
-            padding: 12px 15px;
-            backdrop-filter: blur(30px);
-            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.3);
-            z-index: 9999;
-            pointer-events: auto;
-            display: block; /* рдбрд┐рдлрд╝реЙрд▓реНрдЯ рд░реВрдк рд╕реЗ рдмреНрд▓реЙрдХ рд░рд╣реЗрдЧрд╛, рдХрдВрдЯреНрд░реЛрд▓ JS рд╕реЗ рд╣реЛрдЧрд╛ */
-        }
-
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .logo-3d {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logout-btn {
-            background: transparent;
-            color: var(--neon-pink);
-            border: 1px solid var(--neon-pink);
-            border-radius: 6px;
-            padding: 2px 8px;
-            font-size: 10px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .prediction-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 0, 127, 0.08);
-            border: 1px solid rgba(255, 0, 127, 0.3);
-            padding: 8px 12px;
-            border-radius: 10px;
-        }
-
-        .period-display { font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 600; }
-        .period-display span { display: block; font-size: 13px; color: var(--white); font-family: 'Orbitron', sans-serif; }
-
-        .prediction-value { font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900; color: var(--neon-blue); text-shadow: 0 0 12px var(--neon-blue); }
-
-        .number-box {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--neon-pink);
-            background: rgba(255, 0, 127, 0.15);
-            padding: 2px 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 0, 127, 0.4);
-            text-shadow: 0 0 8px var(--neon-pink);
-            text-align: center;
-        }
-
-        .stat-card { 
-            background: rgba(0, 240, 255, 0.03); 
-            border: 1px solid rgba(0, 240, 255, 0.15); 
-            border-radius: 10px; 
-            padding: 6px; 
-            text-align: center; 
-        }
-        .stat-value { font-size: 12px; font-weight: 800; font-family: 'Orbitron', sans-serif; }
-
-        #signalStrength { color: var(--success); text-shadow: 0 0 6px var(--success); }
-        #trendLabel { color: var(--neon-blue); font-size: 11px; text-shadow: 0 0 6px var(--neon-blue); }
-
-        .table-container { 
-            max-height: 90px; 
-            overflow-y: auto; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-        }
-        table { width: 100%; font-size: 10px; border-collapse: collapse; }
-        th { background: rgba(0, 240, 255, 0.15); color: var(--neon-blue); padding: 6px; font-weight: 800; }
-        td { padding: 5px; text-align: center; background: rgba(10, 6, 20, 0.6); border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-        .win { color: var(--success); font-weight: 900; text-shadow: 0 0 6px var(--success); }
-        .loss { color: var(--danger); font-weight: 900; text-shadow: 0 0 6px var(--danger); }
-
-        /* ЁЯЫая╕П ULTRA RESPONSIVE CLICK TOGGLE BUTTON ЁЯЫая╕П */
-        .toggle-panel-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 20px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
-            border: 2px solid var(--white);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer; 
-            z-index: 100000;
-            pointer-events: auto;
-            animation: blinkingCyber 1s infinite alternate;
-        }
-
-        .toggle-panel-btn::before { content: "ЁЯОп"; font-size: 28px; }
-        .toggle-panel-btn.panel-is-hidden::before { content: "ЁЯСБя╕П"; font-size: 28px; }
-
-        @keyframes blinkingCyber {
-            0% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.6); }
-            100% { box-shadow: 0 0 25px rgba(255, 0, 127, 0.9), 0 0 10px var(--cyber-purple); }
-        }
-
-        /* ACCESS INPUTS */
-        input[type="text"] {
-            width: 100%;
-            padding: 14px;
-            background: rgba(5, 3, 10, 0.9);
-            border: 2px solid var(--neon-blue);
-            border-radius: 12px;
-            color: var(--neon-blue);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            text-align: center;
-            outline: none;
-            letter-spacing: 2px;
-            margin-bottom: 18px;
-        }
-
-        .btn-main {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--cyber-purple), var(--neon-pink));
-            border: none;
-            border-radius: 12px;
-            color: var(--white);
-            font-weight: 900;
-            font-size: 13px;
-            letter-spacing: 2px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-        }
-
-        .telegram-btn {
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            background: #0088cc;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 800;
-            margin-top: 15px;
-        }
-
-        #err { color: var(--danger); font-size: 12px; margin-top: 10px; font-weight: 700; }
+        #yt-hidden-player { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+    <!-- 🚨 MANDATORY STOP WINDOW -->
+    <div id="mandatoryAlert" class="mandatory-overlay">
+        <div class="warning-alert-box">
+            <h3>⚠️ आवश्यक चेतावनी</h3>
+            <p>
+                रजिस्टर करने के बाद ही डिपॉजिट करें। अगर आप लॉगिन करके अपना पुराना वाला अकाउंट यूज करेंगे तो आपका भारी लॉस हो सकता है, उसकी जिम्मेदारी हमारी कुछ नहीं है। बाकी रामू भाई का टेलीग्राम ज्वाइन कर लो क्योंकि उधर आपको प्रेडिक्शन मिलता रहता है।
+            </p>
+            <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="warning-tele-btn">📱 रामू भाई टेलीग्राम ज्वाइन करें</a>
+            <button class="ok-close-btn" onclick="acceptSystemWarning()">मैं समझ गया (OK)</button>
+        </div>
+    </div>
+
+    <!-- YT LIVE MODULE -->
+    <div id="yt-hidden-player"></div>
 
     <iframe id="gameFrame" class="game-background" src="https://bdgwinmy.cc//#/register?invitationCode=8261315097340"></iframe>
 
@@ -293,45 +105,47 @@
         <!-- AUTH INTERFACE -->
         <div id="authBlock" class="auth-wrapper" onclick="triggerVoiceInit()">
             <div class="login-box">
-                <h2>RAMU VIP V2.5</h2>
-                <p>REVERSE PATTERN AUTO-TRACKER</p>
+                <h2>RAMU BHAI VIP V12</h2>
+                <p>SHAYARI REVOLUTION ENGINE</p>
                 <input type="text" id="keyIn" placeholder="ENTER ACCESS KEY" onfocus="triggerVoiceInit()">
-                <button class="btn-main" onclick="startSystem()">CONNECT ENGINE</button>
+                <button class="btn-main" onclick="startSystem()">INITIALIZE ENGINE</button>
                 <p id="err"></p>
-                <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="telegram-btn">ЁЯУ▒ TELEGRAM PASSWORD</a>
+                <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="telegram-btn">📱 GET SECURE KEY VIA TELEGRAM</a>
             </div>
         </div>
 
-        <!-- STABLE TOGGLE CONTROLLER -->
+        <!-- CONTROL BUTTON -->
         <div id="toggleBtn" class="toggle-panel-btn hidden" onclick="togglePanel()"></div>
 
-        <!-- TOP COMPACT PANEL -->
+        <!-- TOP PANEL UI -->
         <div id="appPage" class="glass-box app-view hidden">
             <div class="panel-header">
-                <div class="logo-3d">RAMU REVERSE VIP</div>
-                <button class="logout-btn" onclick="logout()">LOCK APP</button>
+                <div class="logo-3d" id="panelTitle">RAMU BHAI VIP O1</div>
+                <div class="game-selector">
+                    <button id="tab30" class="game-tab active" onclick="switchGameMode('30s')">30 SECONDS</button>
+                    <button id="tab60" class="game-tab" onclick="switchGameMode('1m')">1 MINUTE</button>
+                </div>
+                <button class="logout-btn" onclick="logout()">LOCK</button>
             </div>
 
-            <div class="main-grid">
+            <div id="emergencyWarning" class="warning-overlay-card">
+                ⚠️ आपका लॉस होने के ज्यादा चांसेस है इसलिए इस वाले बैट को स्किप कर दें / छोड़ दें। अगली वाली में बैट ट्राई करेंगे।
+            </div>
+
+            <div class="main-grid" id="dataDisplayGrid">
                 <div class="prediction-section">
-                    <div class="period-display">PERIOD<span id="pID">----</span></div>
+                    <div class="period-display">TARGET PERIOD<span id="pID">----</span></div>
                     <div class="prediction-value" id="pRes">WAIT</div>
                 </div>
                 <div class="number-box" id="pNum">-</div>
                 <div class="stat-card">
-                    <div style="font-size:8px; color:rgba(255,255,255,0.4); margin-bottom:2px;">AI TREND</div>
-                    <div class="stat-value" id="trendLabel">TRACK</div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.3); margin-bottom:2px; text-transform:uppercase;">SCAN MODE</div>
+                    <div class="stat-value" id="trendLabel">MIN-FREQ</div>
                 </div>
             </div>
 
-            <div class="main-grid" style="grid-template-columns: 1.5fr 1.5fr; margin-bottom: 8px;">
-                <div class="stat-card" style="padding: 4px; display: flex; justify-content: space-around; align-items: center;">
-                    <span style="font-size:9px; color:rgba(255,255,255,0.5);">ANTI-LOGIC:</span>
-                    <span class="stat-value" id="signalStrength" style="color: var(--neon-blue);">ACTIVE</span>
-                </div>
-                <div class="stat-card" style="padding: 4px; font-size: 9px; color: var(--success); font-weight:700;">
-                    1M BINGO SHIELD ON
-                </div>
+            <div class="shayari-card" id="shayariBox">
+                "रामू भाई का नया पैनल रेडी है, शेर अपनी चाल चलने वाला है!"
             </div>
 
             <div class="table-container">
@@ -339,8 +153,8 @@
                     <thead>
                         <tr>
                             <th>PERIOD</th>
-                            <th>ANTI PRED</th>
-                            <th>ACTUAL</th>
+                            <th>PREDICTION</th>
+                            <th>RESULT</th>
                             <th>STATUS</th>
                         </tr>
                     </thead>
@@ -350,188 +164,267 @@
         </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
         let voiceTriggered = false;
-        let isGameInside = false; 
-        let currentPredSize = "WAIT";
-        let currentPredNum = "-";
-        let lastLoggedId = null;
+        let isGameInside = false;
+        let activeMode = '30s';
+        let warningAccepted = false;
+        let ytPlayer = null;
+        
+        let consecutiveLosses = { '30s': 0, '1m': 0 };
 
-        function speakVoice(text) {
-            if (!isGameInside) return; 
+        let gameState = {
+            '30s': { url: 'https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json', lastId: null, currentSize: "WAIT", currentNum: "-", loggedId: null, history: "", nextPattern: "MIN-FREQ", currentShayari: "मैदान में उतर चुके हैं भाई, अब बस धमाका देखना!", isLocked: false },
+            '1m': { url: 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json', lastId: null, currentSize: "WAIT", currentNum: "-", loggedId: null, history: "", nextPattern: "MIN-FREQ", currentShayari: "1 मिनट की चाल पर बाज जैसी नज़र है।", isLocked: false }
+        };
+
+        const baseWinShayaris = [
+            "इतिहास गवाह है भाई, जब भी रामू भाई का पैनल चला है, मार्केट शांत हुआ है!",
+            "सिक्का दोनों का होता है, पर वक्त सिर्फ उसका आता है जो सही वक्त पर दांव लगाता है।",
+            "हमारी रफ्तार देखकर दुश्मनों ने रास्ते बदल दिए, यह तो शुरुआत है भाई, अभी तो पूरा खेल बाकी है।"
+        ];
+
+        const baseLossShayaris = [
+            "शेर दो कदम पीछे हटा है तो समझो शिकार बड़ा होने वाला है, घबराना मत भाई!",
+            "गिरे जो समंदर में तो संभल जाएंगे, एक आधी चाल से रामू भाई का हौसला नहीं टूटता।"
+        ];
+
+        let winPool = [...baseWinShayaris];
+        let lossPool = [...baseLossShayaris];
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('yt-hidden-player', {
+                height: '1',
+                width: '1',
+                videoId: 'IBEf4zoseKc',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'loop': 1,
+                    'playlist': 'IBEf4zoseKc',
+                    'playsinline': 1 // सभी मोबाइल ब्राउज़र्स में बैकग्राउंड सपोर्ट बेहतर करने के लिए
+                },
+                events: {
+                    'onReady': (e) => { e.target.setVolume(20); }
+                }
+            });
+        }
+        
+        function acceptSystemWarning() {
+            warningAccepted = true;
+            document.getElementById('mandatoryAlert').classList.add('hidden');
+            
+            if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                ytPlayer.playVideo();
+            }
+
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); 
-                const utterance = new SynthesisUtterance(text); // Handling safety wrapper
-                const ut = new SpeechSynthesisUtterance(text);
+                const ut = new SpeechSynthesisUtterance("वेलकम रामू भाई किंगडम");
                 ut.lang = 'hi-IN';
-                ut.pitch = 1.0;
-                ut.rate = 1.0;
                 window.speechSynthesis.speak(ut);
             }
         }
 
+        function getUniqueShayari(type) {
+            let pool = type === 'win' ? winPool : lossPool;
+            let base = type === 'win' ? baseWinShayaris : baseLossShayaris;
+            if (pool.length === 0) { pool = [...base]; }
+            const index = Math.floor(Math.random() * pool.length);
+            const selected = pool.splice(index, 1)[0];
+            if (type === 'win') winPool = pool; else lossPool = pool;
+            return selected;
+        }
+
+        function speakInQueue(phrases) {
+            if (!isGameInside || !('speechSynthesis' in window) || !warningAccepted) return;
+            window.speechSynthesis.cancel();
+            let index = 0;
+            function speakNext() {
+                if (index < phrases.length) {
+                    const ut = new SpeechSynthesisUtterance(phrases[index]);
+                    ut.lang = 'hi-IN';
+                    ut.rate = 1.0;
+                    ut.onend = () => { index++; speakNext(); };
+                    window.speechSynthesis.speak(ut);
+                }
+            }
+            speakNext();
+        }
+
         function triggerVoiceInit() {
-            if (!voiceTriggered) {
+            if (!voiceTriggered && warningAccepted) {
                 voiceTriggered = true;
                 if ('speechSynthesis' in window) {
-                    const ut = new SpeechSynthesisUtterance("рдЯреЗрд▓реАрдЧреНрд░рд╛рдо рдЧреНрд░реБрдк рдЬреЙрдЗрди рдХрд░реЗрдВ рдФрд░ рдкрд╛рд╕рд╡рд░реНрдб рдкреНрд░рд╛рдкреНрдд рдХрд░реЗрдВред");
+                    const ut = new SpeechSynthesisUtterance("कैप्टन इंजन रेडी भाई");
                     ut.lang = 'hi-IN';
                     window.speechSynthesis.speak(ut);
                 }
             }
         }
 
-        // ================= 100% FIXED SHIELD TOGGLE SYSTEM =================
         function togglePanel() {
             const panel = document.getElementById('appPage');
             const btn = document.getElementById('toggleBtn');
-            
-            if (panel.classList.contains('hidden')) {
-                panel.classList.remove('hidden');
-                btn.classList.remove('panel-is-hidden');
-            } else {
-                panel.classList.add('hidden');
-                btn.classList.add('panel-is-hidden');
-            }
+            panel.classList.toggle('hidden');
+            btn.classList.toggle('panel-is-hidden', panel.classList.contains('hidden'));
         }
 
-        // ================= ANTI-PATTERN COUNTER LOGIC =================
-        function advancedAntiPatternEngine(list) {
-            if (!list || list.length < 5) return { size: "SMALL", num: 2, trend: "REVERSE" };
+        function switchGameMode(mode) {
+            activeMode = mode;
+            document.getElementById('tab30').classList.toggle('active', mode === '30s');
+            document.getElementById('tab60').classList.toggle('active', mode === '1m');
+            document.getElementById('logs').innerHTML = gameState[mode].history;
+            updateUIFields(mode);
+        }
 
-            const numbers = list.slice(0, 15).map(x => parseInt(x.number));
-            const sizes = list.slice(0, 15).map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
+        function updateUIFields(mode) {
+            const warnCard = document.getElementById('emergencyWarning');
+            const normalGrid = document.getElementById('dataDisplayGrid');
 
-            let streak = 1;
-            for(let i = 0; i < sizes.length - 1; i++) {
-                if(sizes[i] === sizes[i+1]) streak++;
-                else break;
-            }
-
-            let normalPrediction = "BIG";
-            let trendType = "ANTI-BALANCED";
-
-            // рдЯреНрд░реЗрдВрдб рдХреЗ рдЖрдзрд╛рд░ рдкрд░ рдиреЙрд░реНрдорд▓ рдХреИрд▓рдХреБрд▓реЗрд╢рди
-            if (streak >= 3) {
-                normalPrediction = sizes[0]; 
-                trendType = "ANTI-DRAGON";
-            } else if (sizes[0] !== sizes[1] && sizes[1] === sizes[2]) {
-                normalPrediction = sizes[0] === "BIG" ? "SMALL" : "BIG";
-                trendType = "ANTI-1-1";
+            if (gameState[mode].isLocked) {
+                warnCard.style.display = "block";
+                normalGrid.style.opacity = "0.2";
+                document.getElementById('pRes').innerText = "LOCKED";
+                document.getElementById('pNum').innerText = "❌";
+                document.getElementById('trendLabel').innerText = "HIGH RISK";
+                document.getElementById('trendLabel').style.color = "var(--warning-red)";
             } else {
-                let b = 0, s = 0;
-                sizes.forEach((val, index) => {
-                    if(val === "BIG") b += (15 - index); else s += (15 - index);
+                warnCard.style.display = "none";
+                normalGrid.style.opacity = "1";
+                document.getElementById('pRes').innerText = gameState[mode].currentSize;
+                document.getElementById('pNum').innerText = gameState[mode].currentNum;
+                document.getElementById('trendLabel').innerText = gameState[mode].riskPattern;
+                document.getElementById('trendLabel').style.color = "var(--neon-blue)";
+            }
+            document.getElementById('shayariBox').innerText = "✨ " + gameState[mode].currentShayari;
+        }
+
+        function isolatePatternBrain(list, mode) {
+            if (!list || list.length < 5) return { size: "BIG", num: 7, riskPattern: "MIN-FREQ", shouldLock: false };
+            const targetLength = Math.min(list.length, 20);
+            const subList = list.slice(0, targetLength);
+            const numbers = subList.map(x => parseInt(x.number));
+            const sizes = subList.map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
+
+            let bigCount = 0, smallCount = 0;
+            sizes.forEach(s => { if (s === "BIG") bigCount++; else smallCount++; });
+
+            let sizePred = (smallCount < bigCount) ? "SMALL" : "BIG";
+            if (smallCount === bigCount) sizePred = (sizes[0] === "BIG") ? "SMALL" : "BIG";
+
+            let allNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            let openedNumbers = new Set(numbers);
+            let unopenedNumbers = allNumbers.filter(n => !openedNumbers.has(n));
+            let sizePool = (sizePred === "BIG") ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+            let targetNumPool = unopenedNumbers.filter(n => sizePool.includes(n));
+
+            let numPred;
+            if (targetNumPool.length > 0) {
+                numPred = targetNumPool[Math.floor(Date.now() % targetNumPool.length)];
+            } else {
+                let numCounts = {}; sizePool.forEach(n => numCounts[n] = 0);
+                numbers.forEach(n => { if (numCounts[n] !== undefined) numCounts[n]++; });
+                let minCount = Infinity, leastFreqNumbers = [];
+                sizePool.forEach(n => {
+                    if (numCounts[n] < minCount) { minCount = numCounts[n]; leastFreqNumbers = [n]; }
+                    else if (numCounts[n] === minCount) leastFreqNumbers.push(n);
                 });
-                normalPrediction = b >= s ? "BIG" : "SMALL";
-                trendType = "ANTI-VIBE";
+                numPred = leastFreqNumbers[Math.floor(Date.now() % leastFreqNumbers.length)];
             }
 
-            // ЁЯСС REVERSE ALGORITHM (рдЧреЗрдо рдХреА рдЪрд╛рд▓ рдХрд╛ рдмрд┐рд▓реНрдХреБрд▓ рдЙрд▓реНрдЯрд╛ рд░рд┐рдЬрд▓реНрдЯ рджреЗрдирд╛)
-            let finalSize = (normalPrediction === "BIG") ? "SMALL" : "BIG";
-
-            // рдирдВрдмрд░ рдХрд╛ рднреА рдмрд┐рд▓реНрдХреБрд▓ рд░рд┐рд╡рд░реНрд╕ рд╕рд┐рд▓реЗрдХреНрд╢рди
-            let finalNum = 2;
-            if (finalSize === "SMALL") {
-                const safeSmall = [0, 1, 2, 3, 4].filter(n => n !== numbers[0]);
-                finalNum = safeSmall[Math.floor(Math.random() * safeSmall.length)];
-            } else {
-                const safeBig = [5, 6, 7, 8, 9].filter(n => n !== numbers[0]);
-                finalNum = safeBig[Math.floor(Math.random() * safeBig.length)];
-            }
-
-            return { size: finalSize, num: finalNum, trend: trendType };
+            return { size: sizePred, num: numPred, riskPattern: `B:${bigCount}|S:${smallCount}`, shouldLock: consecutiveLosses[mode] >= 4 };
         }
 
-        // ================= ENGINE INITIATE =================
         async function startSystem() {
             const key = document.getElementById('keyIn').value.trim();
-            if (key === "RAMU BHAI BOSS 1") {
+            if (key === "RAMU BHAI MOD V1") {
                 document.getElementById('err').innerText = "";
                 document.getElementById('authBlock').classList.add('hidden');
-                
-                // рд▓реЙрдЧрд┐рди рд╣реЛрддреЗ рд╣реА рдкреИрдирд▓ рдФрд░ рдмрдЯрди рджреЛрдиреЛрдВ рдПрдХреНрдЯрд┐рд╡реЗрдЯ рд╣реЛ рдЬрд╛рдПрдВрдЧреЗ
                 document.getElementById('toggleBtn').classList.remove('hidden'); 
                 document.getElementById('appPage').classList.remove('hidden');
-
-                runLogic();
-            } else {
-                document.getElementById('err').innerText = "INVALID LICENSE KEY!";
-            }
+                
+                if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                    ytPlayer.playVideo();
+                }
+                runParallelLogic();
+            } else { document.getElementById('err').innerText = "INVALID KEY!"; }
         }
 
-        async function runLogic() {
-            if (window.logicInterval) clearInterval(window.logicInterval);
-            
-            window.logicInterval = setInterval(async () => {
-                try {
-                    const res = await fetch('https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json');
-                    const json = await res.json();
-                    
-                    if (json && json.data && json.data.list && json.data.list.length > 0) {
-                        isGameInside = true; 
-                    } else {
-                        isGameInside = false;
-                        return;
-                    }
+        function runParallelLogic() {
+            setInterval(async () => {
+                if (!warningAccepted) return;
+                ['30s', '1m'].forEach(async (mode) => {
+                    try {
+                        const res = await fetch(gameState[mode].url);
+                        const json = await res.json();
+                        if (json && json.data && json.data.list && json.data.list.length > 0) isGameInside = true; else return;
 
-                    const listData = json.data.list;
-                    const latest = listData[0];
-                    const actualNum = parseInt(latest.number);
-                    const actualSize = actualNum >= 5 ? "BIG" : "SMALL";
+                        const listData = json.data.list;
+                        const latest = listData[0];
+                        const actualNum = parseInt(latest.number);
+                        const actualSize = actualNum >= 5 ? "BIG" : "SMALL";
+                        const brain = isolatePatternBrain(listData, mode);
 
-                    // рдирдпрд╛ рд░рд┐рд╡рд░реНрд╕ рдкреИрдЯрд░реНрди рдкреНрд░рд╛рдкреНрдд рдХрд░реЗрдВ
-                    const antiAnalysis = advancedAntiPatternEngine(listData);
+                        if (gameState[mode].lastId !== latest.issueNumber) {
+                            if (gameState[mode].lastId && gameState[mode].loggedId !== latest.issueNumber) {
+                                gameState[mode].loggedId = latest.issueNumber;
+                                const isSizeWin = (gameState[mode].currentSize === actualSize);
+                                const isNumWin = (parseInt(gameState[mode].currentNum) === actualNum);
+                                let statusHTML = "", freshShayari = "", resultAnnouncement = "";
 
-                    if (window.lastId !== latest.issueNumber) {
-                        
-                        if (window.lastId && lastLoggedId !== latest.issueNumber) {
-                            lastLoggedId = latest.issueNumber;
-                            const isWin = (currentPredSize === actualSize);
-                            const statusText = isWin ? 'WIN' : 'LOSS';
+                                if (gameState[mode].isLocked) {
+                                    consecutiveLosses[mode] = 0;
+                                    statusHTML = `<span>SKIPPED</span>`;
+                                    freshShayari = "सुरक्षित स्किप हो गया भाई।";
+                                    resultAnnouncement = "बैट स्किप हुई भाई";
+                                } else {
+                                    if (isSizeWin) {
+                                        consecutiveLosses[mode] = 0;
+                                        freshShayari = getUniqueShayari('win');
+                                        resultAnnouncement = isNumWin ? "जैकपॉट शॉट पास" : "शॉट पास हो गया भाई";
+                                        statusHTML = isNumWin ? `<span class="jackpot-win">JACKPOT</span>` : `<span class="win">WIN</span>`;
+                                    } else {
+                                        consecutiveLosses[mode]++;
+                                        freshShayari = getUniqueShayari('loss');
+                                        resultAnnouncement = "इस बार मिस हुआ भाई";
+                                        statusHTML = `<span class="loss">LOSS</span>`;
+                                    }
+                                }
 
-                            const row = `
-                                <tr>
-                                    <td>${latest.issueNumber.slice(-3)}</td>
-                                    <td>${currentPredSize}</td>
-                                    <td>${actualNum}</td>
-                                    <td class="${isWin ? 'win' : 'loss'}">${statusText}</td>
-                                </tr>
-                            `;
-                            document.getElementById('logs').innerHTML = row + document.getElementById('logs').innerHTML;
-                            
-                            setTimeout(() => {
-                                if (isWin) speakVoice(`рд╡рд┐рди рд╣реБрдЖ рд╣реИ, рд░рд┐рдЬрд▓реНрдЯ ${actualSize} рдЖрдпрд╛ рд╣реИ`);
-                                else speakVoice(`рд▓реЙрд╕ рд╣реБрдЖ рд╣реИ, рд░рд┐рдЬрд▓реНрдЯ ${actualSize} рдЖрдпрд╛ рд╣реИ`);
-                            }, 500);
+                                gameState[mode].currentShayari = freshShayari;
+                                const newRow = `<tr><td>${latest.issueNumber.slice(-3)}</td><td>${gameState[mode].isLocked ? 'SKIPPED' : gameState[mode].currentSize + ' (' + gameState[mode].currentNum + ')'}</td><td>${actualNum}</td><td>${statusHTML}</td></tr>`;
+                                gameState[mode].history = newRow + gameState[mode].history;
+
+                                if (activeMode === mode) {
+                                    document.getElementById('logs').innerHTML = gameState[mode].history;
+                                    document.getElementById('shayariBox').innerText = "✨ " + gameState[mode].currentShayari;
+                                    let vocalList = [resultAnnouncement, freshShayari];
+                                    if (brain.shouldLock) vocalList.push("सावधान! बैट छोड़ दें।"); else vocalList.push(`अगला शॉट ${brain.size}`);
+                                    speakInQueue(vocalList);
+                                }
+                            }
+                            gameState[mode].lastId = latest.issueNumber;
+                            gameState[mode].currentSize = brain.size;
+                            gameState[mode].currentNum = brain.num;
+                            gameState[mode].riskPattern = brain.riskPattern;
+                            gameState[mode].isLocked = brain.shouldLock;
                         }
-
-                        window.lastId = latest.issueNumber;
-                        currentPredSize = antiAnalysis.size;
-                        currentPredNum = antiAnalysis.num;
-
-                        setTimeout(() => {
-                            speakVoice(`рдЕрдЧрд▓рд╛ рдкреНрд░реЗрдбрд┐рдХреНрд╢рди ${currentPredSize} рдирдВрдмрд░ ${currentPredNum} рд╣реИ`);
-                        }, 4500);
-                    }
-
-                    document.getElementById('pID').innerText = (BigInt(latest.issueNumber) + 1n).toString().slice(-4);
-                    document.getElementById('pRes').innerText = currentPredSize;
-                    document.getElementById('pNum').innerText = currentPredNum;
-                    document.getElementById('trendLabel').innerText = antiAnalysis.trend;
-
-                } catch (e) {
-                    // Fail-safe silently
-                }
-            }, 2000);
+                        if (activeMode === mode) {
+                            document.getElementById('pID').innerText = (BigInt(latest.issueNumber) + 1n).toString().slice(-4);
+                            updateUIFields(mode);
+                        }
+                    } catch (e) {}
+                });
+            }, 1500);
         }
 
         function logout() { location.reload(); }
-
         window.onload = () => {
+            document.getElementById('mandatoryAlert').classList.remove('hidden');
             document.getElementById('authBlock').classList.remove('hidden');
-            document.getElementById('toggleBtn').classList.add('hidden');
-            document.getElementById('appPage').classList.add('hidden');
         };
     </script>
 </body>
