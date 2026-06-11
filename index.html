@@ -1,422 +1,651 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAMU BHAI VIP ULTRA V10 - RE-LOADED ENGINE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;600;700;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-base: #06040a;
-            --card-bg: rgba(14, 10, 22, 0.94);
-            --text-main: #f3f0f7;
-            --neon-blue: #00f0ff;
-            --neon-pink: #ff007f;
-            --warning-red: #ff3344;
-            --success-green: #00ff88;
-            --gold: #ffb700;
-        }
-        html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg-base); }
-        body { color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
-        .hidden { display: none !important; }
-        
-        /* 📱 CLEAN FULL-VIEW EMBED TO FORCE CORRECT PAGE LOADING */
-        .game-background { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-            z-index: 1; 
-            background: #110d1a; 
-        }
-        .main-container { position: relative; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
-        
-        /* 🚨 ALERT MODAL */
-        .mandatory-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.98); display: flex; justify-content: center; align-items: center; z-index: 999999; pointer-events: auto; backdrop-filter: blur(20px); }
-        .warning-alert-box { max-width: 420px; width: 90%; background: #140f1f; border: 2px solid var(--warning-red); border-radius: 28px; padding: 35px 25px; text-align: center; box-shadow: 0 0 40px rgba(255, 51, 68, 0.25); }
-        .warning-alert-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; color: var(--warning-red); margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px; text-transform: uppercase; }
-        .warning-alert-box p { font-size: 13px; color: #ffccd0; line-height: 1.6; margin-bottom: 22px; text-align: justify; font-weight: 600; }
-        .warning-tele-btn { display: inline-block; width: 100%; text-decoration: none; color: #fff; background: #0088cc; padding: 12px; border-radius: 14px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3); }
-        .ok-close-btn { width: 100%; padding: 14px; background: var(--warning-red); border: none; border-radius: 14px; color: white; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>╰‿╯RAMUㅤᏴᎻᎪᏆ • ULTIMATE RECOVERY VIP</title>
 
-        /* 🕶️ AUTH */
-        .auth-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050308; display: flex; justify-content: center; align-items: center; z-index: 99999; pointer-events: auto; }
-        .login-box { max-width: 380px; width: 88%; background: #110d1a; border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 40px 25px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .login-box h2 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--text-main); letter-spacing: -0.5px; margin-bottom: 8px; }
-        .login-box p { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
-        
-        /* 🎛️ PANEL OVERLAY */
-        .glass-box.app-view { position: fixed; top: 0; left: 0; width: 100%; height: auto; background: var(--card-bg); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 12px 20px; backdrop-filter: blur(25px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 9999; pointer-events: auto; }
-        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; }
-        .logo-3d { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; color: var(--neon-blue); white-space: nowrap; }
-        
-        .music-toggle-btn { background: rgba(255, 0, 127, 0.15); color: var(--neon-pink); border: 1px solid rgba(255, 0, 127, 0.4); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 700; cursor: pointer; letter-spacing: 0.5px; text-transform: uppercase; transition: all 0.3s ease; }
-        .music-toggle-btn.music-on { background: rgba(0, 255, 136, 0.15); color: var(--success-green); border: 1px solid rgba(0, 255, 136, 0.4); box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700;800&display=swap');
 
-        .logout-btn { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; }
-        
-        .game-selector { display: flex; gap: 6px; background: rgba(0, 0, 0, 0.3); padding: 4px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04); }
-        .game-tab { padding: 6px 14px; font-size: 11px; font-weight: 700; background: transparent; border: none; color: rgba(255, 255, 255, 0.4); border-radius: 8px; cursor: pointer; }
-        .game-tab.active { background: #221a34; color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2); }
-        
-        .main-grid { display: grid; grid-template-columns: 1.4fr 0.8fr 0.8fr; gap: 12px; align-items: center; margin-bottom: 8px; }
-        .prediction-section { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); padding: 12px 16px; border-radius: 16px; min-height: 54px; position: relative; overflow: hidden; }
-        .period-display { font-size: 9px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 0.5px; }
-        .period-display span { display: block; font-size: 14px; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-top: 2px; }
-        .prediction-value { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--success-green); }
-        .number-box { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--neon-pink); background: rgba(255, 0, 127, 0.05); padding: 12px; border-radius: 16px; border: 1px solid rgba(255, 0, 127, 0.15); text-align: center; min-height: 54px; display: flex; align-items: center; justify-content: center; }
-        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 12px; text-align: center; min-height: 54px; display: flex; flex-direction: column; justify-content: center; }
-        .stat-value { font-size: 11px; font-weight: 700; color: var(--neon-blue); }
-        
-        .shayari-card { background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.8); font-style: italic; line-height: 1.4; margin-bottom: 8px; font-weight: 600; }
-        
-        .table-container { max-height: 110px; overflow-y: auto; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
-        table { width: 100%; font-size: 11px; border-collapse: collapse; }
-        th { background: rgba(255, 255, 255, 0.03); color: rgba(255,255,255,0.4); padding: 8px; font-weight: 600; text-transform: uppercase; font-size: 9px; letter-spacing: 0.5px; }
-        td { padding: 7px; text-align: center; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.02); color: rgba(255,255,255,0.8); }
-        .win { color: var(--success-green); font-weight: 700; }
-        .loss { color: var(--warning-red); font-weight: 700; }
-        .jackpot-win { color: var(--gold); font-weight: 800; font-family: 'Space Grotesk', sans-serif; }
-        
-        .toggle-panel-btn { position: fixed; bottom: 35px; right: 25px; width: 60px; height: 60px; background: #1c162a; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 100000; pointer-events: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .toggle-panel-btn::before { content: "⚡"; font-size: 24px; color: var(--neon-blue); }
-        .toggle-panel-btn.panel-is-hidden::before { content: "🔒"; font-size: 22px; color: var(--neon-pink); }
-        
-        #keyIn { width: 100%; padding: 14px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; color: var(--neon-blue); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; text-align: center; outline: none; margin-bottom: 20px; }
-        .btn-main { width: 100%; padding: 14px; background: var(--text-main); border: none; border-radius: 14px; color: var(--bg-base); font-weight: 700; font-size: 13px; cursor: pointer; }
-        .telegram-btn { display: block; text-decoration: none; color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 18px; font-weight: 600; letter-spacing: 0.5px; }
-        #err { color: var(--warning-red); font-size: 11px; margin-top: 12px; font-weight: 600; }
+:root {
+  --theme-green: #00ff66;
+  --theme-red: #ff0044;
+  --theme-glow: #00d2ff;
+  --theme-gold: #ffcc00;
+  --theme-jackpot: #ff00ff;
+  --panel-bg: rgba(10, 15, 30, 0.95);
+}
 
-        #yt-hidden-player { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-    </style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  margin: 0;
+  background: #020208;
+  color: #ffffff;
+  font-family: 'Rajdhani', sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+#loadingScreen {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #000000;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-glow-circle {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(255, 0, 68, 0.1);
+  border-left-color: var(--theme-red);
+  border-right-color: var(--theme-gold);
+  border-radius: 50%;
+  animation: spinLoader 1s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 0, 68, 0.5);
+  margin-bottom: 20px;
+}
+
+@keyframes spinLoader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 2px;
+  animation: pulseText 1.5s infinite ease-in-out;
+  text-align: center;
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; text-shadow: 0 0 15px var(--theme-red); }
+}
+
+.warning-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.warning-box {
+  background: linear-gradient(135deg, #100a1c, #05020a);
+  border: 2px solid var(--theme-red);
+  box-shadow: 0 0 30px rgba(255, 0, 68, 0.4);
+  border-radius: 16px;
+  padding: 25px;
+  width: 320px;
+  text-align: center;
+}
+.warning-box h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--theme-red);
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px var(--theme-red);
+}
+.warning-box p {
+  font-size: 14px;
+  color: #e2e8f0;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+.activate-now-btn {
+  background: linear-gradient(90deg, var(--theme-red), var(--theme-gold));
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.app-container {
+  max-width: 460px;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+  background: #000;
+}
+
+.live-web-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0; z-index: 1;
+}
+.live-web-container iframe { width: 100%; height: 100%; border: none; }
+
+.floating-controller {
+  position: absolute;
+  top: 10px; left: 10px; right: 10px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.clickable-element { pointer-events: auto; }
+
+.top-action-bar { display: flex; justify-content: center; gap: 8px; width: 100%; }
+
+.toggle-panel-btn, .music-control-btn, .voice-control-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #121829, #060913);
+  border: 1.5px solid var(--theme-gold);
+  color: var(--theme-gold);
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.music-control-btn { border-color: var(--theme-glow); color: #fff; background: linear-gradient(135deg, #09203f, #537895); }
+.voice-control-btn { border-color: var(--theme-green); color: var(--theme-green); background: linear-gradient(135deg, #0a2417, #020a05); }
+
+.brand-title-card {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  background: linear-gradient(180deg, #fff, var(--theme-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+  margin-bottom: 2px;
+}
+
+.panel-tg-button {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(90deg, #0088cc, #00a2f3);
+  color: #fff; text-decoration: none;
+  font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 800;
+  padding: 6px; border-radius: 8px; margin-bottom: 10px;
+}
+
+.card.pred {
+  background: var(--panel-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.5px solid rgba(255, 204, 0, 0.3);
+  border-radius: 16px;
+  padding: 14px;
+  max-height: 75vh;
+  overflow-y: auto;
+  transform: scaleY(0);
+  opacity: 0; height: 0; margin: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: top center;
+}
+
+.card.pred.active-mode { transform: scaleY(1); opacity: 1; height: auto; pointer-events: auto; }
+
+.game-modes { display: flex; gap: 8px; margin-bottom: 10px; }
+.mode-btn {
+  flex: 1; padding: 8px;
+  background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 210, 255, 0.3);
+  color: #b3f0ff; font-family: 'Orbitron', sans-serif; font-weight: 800;
+  border-radius: 8px; cursor: pointer; font-size: 11px;
+}
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--theme-red), #990026);
+  color: #fff; border: 1px solid #fff;
+  box-shadow: 0 0 10px rgba(255, 0, 68, 0.4);
+}
+
+.stats-bar {
+  display: flex; justify-content: space-between; font-size: 12px;
+  padding: 6px 12px; background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;
+}
+
+.pred-main { display: flex; justify-content: space-between; align-items: center; margin: 12px 0; }
+.pred-val { font-family: 'Orbitron', sans-serif; font-size: 34px; font-weight: 900; }
+
+.numbers-container { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+.number-box { 
+  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; 
+  border-radius: 8px; font-size: 18px; font-weight: 800; font-family: 'Orbitron', sans-serif;
+  background: rgba(0,0,0,0.6); border: 1.5px solid var(--theme-gold); color: var(--theme-gold);
+}
+
+.confidence { margin-top: 8px; }
+.conf-label { font-size: 11px; color: var(--theme-glow); margin-bottom: 4px; display: flex; justify-content: space-between; font-weight: 700; }
+.conf-bar { height: 8px; border-radius: 4px; background: rgba(0,0,0,0.5); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+.conf-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--theme-red), var(--theme-gold), var(--theme-green)); transition: width .6s ease; }
+
+.stats-display { 
+  display: flex; justify-content: space-between; margin-top: 10px; padding: 8px; 
+  background: rgba(0,0,0,0.4); border-left: 3px solid var(--theme-gold); border-radius: 4px; font-size: 11px; 
+}
+
+.history-section { margin-top: 10px; background: rgba(0, 0, 0, 0.5); border-radius: 8px; padding: 4px; border: 1px solid rgba(255,255,255,0.06); }
+table { width: 100%; border-collapse: collapse; font-size: 10px; } 
+th, td { padding: 4px 2px; text-align: center; font-weight: 700; }
+th { color: var(--theme-glow); font-family: 'Orbitron', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+.win { color: var(--theme-green); font-weight: 800; }
+.loss { color: var(--theme-red); font-weight: 800; }
+.jackpot-win { color: var(--theme-jackpot); font-weight: 900; animation: jpGlow 1s infinite alternate; }
+
+@keyframes jpGlow { 0% { opacity: 0.8; } 100% { opacity: 1; text-shadow: 0 0 12px var(--theme-jackpot); } }
+
+.pass-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(2, 3, 10, 0.95); backdrop-filter: blur(10px); z-index: 10000;
+  display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.pass-overlay.show-lock { visibility: visible; opacity: 1; }
+.pass-box { background: rgba(15, 22, 41, 0.98); border: 1.5px solid rgba(255, 204, 0, 0.4); border-radius: 16px; padding: 24px; width: 320px; text-align: center; }
+.pass-box h3 { font-family: 'Orbitron', sans-serif; font-size: 15px; color: #fff; margin-bottom: 14px; }
+.pass-box input { width: 100%; padding: 10px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; text-align: center; margin-bottom: 14px; outline: none; font-family: 'Orbitron'; }
+.submit-btn { background: var(--theme-gold); border: none; color: #000; padding: 10px 24px; border-radius: 8px; font-family: 'Orbitron'; font-weight: 800; width: 100%; cursor: pointer; }
+
+.gate-tg-btn { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0088cc, #005580); color: #fff; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-size: 13px; font-weight: 800; font-family: 'Orbitron'; width: 100%; margin-bottom: 18px; }
+
+.hidden-audio-container { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden; bottom: 0; left: 0; }
+</style>
 </head>
-<body oncontextmenu="return false;">
 
-    <div id="mandatoryAlert" class="mandatory-overlay">
-        <div class="warning-alert-box">
-            <h3>⚠️ आवश्यक चेतावनी</h3>
-            <p>
-                रजिस्टर करने के बाद ही डिपॉजिट करें। अगर आप लॉगिन करके अपना पुराना वाला अकाउंट यूज करेंगे तो आपका भारी लॉस हो सकता है, उसकी जिम्मेदारी हमारी कुछ नहीं है। बाकी रामू भाई का टेलीग्राम ज्वाइन कर लो क्योंकि उधर आपको प्रेडिक्शन मिलता रहता है।
-            </p>
-            <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="warning-tele-btn">📱 रामू भाई टेलीग्राम ज्वाइन करें</a>
-            <button class="ok-close-btn" onclick="acceptSystemWarning()">मैं समझ गया (OK)</button>
-        </div>
-    </div>
+<body onclick="trySpeakWarning()">
 
-    <div id="yt-hidden-player"></div>
+<div id="loadingScreen">
+  <div class="loader-glow-circle"></div>
+  <div class="loading-text">╰‿╯RAMUㅤᏴᎻᎪᏆ SYSTEM LOADING...</div>
+</div>
 
-    <iframe id="gameFrame" class="game-background" src="https://bdgwinmy.cc//#/home/AllLotteryGames?id=1" allow="autoplay; encrypted-media"></iframe>
+<div class="warning-overlay" id="warningPopup">
+  <div class="warning-box">
+    <h2>⚠️ SYSTEM WARNING!</h2>
+    <p id="warningText">पैनल एक्टिवेशन को पूरा करने के लिए नीचे दिए गए लिंक से रजिस्टर करें और न्यूनतम <b>₹500</b> डिपॉजिट करें। डिपॉजिट पूरा होने पर एआई लॉजिक सिंक ऑन हो जाएगा।</p>
+    <button class="activate-now-btn" onclick="closeWarningAndOpenPanel()">UNDERSTOOD & ACTIVATE</button>
+  </div>
+</div>
 
-    <div class="main-container">
-        <div id="authBlock" class="auth-wrapper" onclick="triggerVoiceInit()">
-            <div class="login-box">
-                <h2>RAMU BHAI VIP V12</h2>
-                <p>SHAYARI REVOLUTION ENGINE</p>
-                <input type="text" id="keyIn" placeholder="ENTER ACCESS KEY" onfocus="triggerVoiceInit()">
-                <button class="btn-main" onclick="startSystem()">INITIALIZE ENGINE</button>
-                <p id="err"></p>
-                <a href="https://t.me/+lG3hYVaX7GxkYjc1" target="_blank" class="telegram-btn">📱 GET SECURE KEY VIA TELEGRAM</a>
-            </div>
-        </div>
+<div class="app-container">
+  <div class="hidden-audio-container">
+    <div id="youtube-audio-player"></div>
+  </div>
 
-        <div id="toggleBtn" class="toggle-panel-btn hidden" onclick="togglePanel()"></div>
-
-        <div id="appPage" class="glass-box app-view hidden">
-            <div class="panel-header">
-                <div class="logo-3d" id="panelTitle">RAMU BHAI VIP O1</div>
-                
-                <button id="musicToggleBtn" class="music-toggle-btn" onclick="toggleMusic()">🎵 Music: OFF</button>
-                
-                <div class="game-selector">
-                    <button id="tab30" class="game-tab active" onclick="switchGameMode('30s')">30S</button>
-                    <button id="tab60" class="game-tab" onclick="switchGameMode('1m')">1M</button>
-                </div>
-                <button class="logout-btn" onclick="logout()">LOCK</button>
-            </div>
-
-            <div class="main-grid" id="dataDisplayGrid">
-                <div class="prediction-section">
-                    <div class="period-display">TARGET PERIOD<span id="pID">----</span></div>
-                    <div class="prediction-value" id="pRes">WAIT</div>
-                </div>
-                <div class="number-box" id="pNum">-</div>
-                <div class="stat-card">
-                    <div style="font-size:8px; color:rgba(255,255,255,0.3); margin-bottom:2px; text-transform:uppercase;">TREND PATTERN</div>
-                    <div class="stat-value" id="trendLabel">ANALYZING</div>
-                </div>
-            </div>
-
-            <div class="shayari-card" id="shayariBox">
-                "रामू भाई का नया पैनल रेडी है, शेर अपनी चाल चलने वाला है!"
-            </div>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>PERIOD</th>
-                            <th>PREDICTION</th>
-                            <th>RESULT</th>
-                            <th>STATUS</th>
-                        </tr>
-                    </thead>
-                    <tbody id="logs"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
-
-    <script>
-        let voiceTriggered = false;
-        let isGameInside = false;
-        let activeMode = '30s';
-        let warningAccepted = false;
-        let ytPlayer = null;
-        let isMusicPlaying = false;
-        let isLevel2Active = false; 
-
-        let gameState = {
-            '30s': { url: 'https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json', lastId: null, currentSize: "WAIT", currentNum: "-", loggedId: null, history: "", nextPattern: "LIVE-SYNC" },
-            '1m': { url: 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json', lastId: null, currentSize: "WAIT", currentNum: "-", loggedId: null, history: "", nextPattern: "LIVE-SYNC" }
-        };
-
-        const baseWinShayaris = [
-            "इतिहास गवाह है भाई, जब भी रामू भाई का पैनल चला है, मार्केट शांत हुआ है!",
-            "सिक्का दोनों का होता है, पर वक्त सिर्फ उसका आता है जो सही वक्त पर दांव लगाता है।"
-        ];
-
-        const baseLossShayaris = [
-            "शेर दो कदम पीछे हटा है तो समझो शिकार बड़ा होने वाला है! लेवल 2 रिकवरी ऑन है भाई।",
-            "चाल बदल रही है भाई, पर रामू भाई का इंजन अब महा-रिकवरी करेगा।"
-        ];
-
-        let winPool = [...baseWinShayaris];
-        let lossPool = [...baseLossShayaris];
-
-        function onYouTubeIframeAPIReady() {
-            ytPlayer = new YT.Player('yt-hidden-player', {
-                height: '1', width: '1', videoId: 'IBEf4zoseKc',
-                playerVars: { 'autoplay': 0, 'controls': 0, 'disablekb': 1, 'loop': 1, 'playlist': 'IBEf4zoseKc', 'playsinline': 1 },
-                events: { 'onReady': (e) => { e.target.setVolume(15); e.target.mute(); } }
-            });
-        }
+  <div class="floating-controller">
+      <div class="top-action-bar">
+          <button class="toggle-panel-btn clickable-element" id="toggleBtn" onclick="handleBtnClick(event)">👁️ SHOW PANEL</button>
+          <button class="music-control-btn clickable-element" id="musicBtn" onclick="toggleBackgroundMusic(event)">🎵 PLAY MUSIC</button>
+          <button class="voice-control-btn clickable-element" id="voiceToggleBtn" style="display:none;" onclick="toggleVoiceEngine(event)">🎤 VOICE: OFF</button>
+      </div>
+      
+      <div class="card pred clickable-element" id="predictionCard">
+        <div class="brand-title-card">╰‿╯RAMUㅤᏴᎻᎪᏆ VIP</div>
         
-        function acceptSystemWarning() {
-            warningAccepted = true;
-            document.getElementById('mandatoryAlert').classList.add('hidden');
-            
-            // 🔄 FORCE FRESH RELOAD OF GAME IFRAME ON ENTRY
-            const frame = document.getElementById('gameFrame');
-            if(frame) { frame.src = frame.src; }
+        <a href="https://t.me/+h5jDuTLxOEQ4NmVl" target="_blank" class="panel-tg-button">📢 JOIN OFFICIAL TELEGRAM CHANNEL</a>
+        
+        <div class="game-modes">
+            <button class="mode-btn active" id="btn30s" onclick="switchGameMode('30S')">⚡ GO 30S</button>
+            <button class="mode-btn" id="btn1m" onclick="switchGameMode('1M')">🕒 GO 1M</button>
+        </div>
 
-            if (ytPlayer && typeof ytPlayer.playVideo === 'function') { ytPlayer.playVideo(); }
-            if ('speechSynthesis' in window) {
-                const ut = new SpeechSynthesisUtterance("वेलकम रामू भाई किंगडम");
-                ut.lang = 'hi-IN'; window.speechSynthesis.speak(ut);
-            }
-        }
+        <div class="stats-bar">
+          <span>WINS: <span id="totalWins" style="color:var(--theme-green)">0</span> | LOSS: <span id="totalLosses" style="color:var(--theme-red)">0</span></span>
+          <span style="font-family:'Orbitron'; color:var(--theme-gold)">TIME: <span id="timer">00:30</span></span>
+        </div>
 
-        function toggleMusic() {
-            const musicBtn = document.getElementById('musicToggleBtn');
-            if (!ytPlayer || typeof ytPlayer.unMute !== 'function') return;
+        <div class="pred-main">
+          <div style="flex:1; text-align:center;">
+            <div style="font-size:11px; color:#a0aec0; font-family:'Orbitron';" id="predTitle">NEXT ISS. (30S)</div>
+            <div class="pred-val" id="result">WAIT</div>
+          </div>
+          
+          <div style="flex:1; text-align:center;">
+            <div style="font-size:11px; color:var(--theme-gold); font-family:'Orbitron';">AI NUMS</div>
+            <div class="numbers-container">
+              <div class="number-box" id="num1">-</div>
+              <div class="number-box" id="num2">-</div>
+            </div>
+          </div>
+        </div>
 
-            if (!isMusicPlaying) {
-                ytPlayer.unMute(); ytPlayer.playVideo(); isMusicPlaying = true;
-                musicBtn.innerText = "🎵 Music: ON"; musicBtn.classList.add('music-on');
-            } else {
-                ytPlayer.mute(); isMusicPlaying = false;
-                musicBtn.innerText = "🎵 Music: OFF"; musicBtn.classList.remove('music-on');
-            }
-        }
+        <div class="confidence">
+          <div class="conf-label"><span>CLASSIC AUTO LEVEL SYNC</span><span id="confText">0%</span></div>
+          <div class="conf-bar"><div class="conf-fill" id="confFill"></div></div>
+        </div>
+        
+        <div class="stats-display">
+          <div style="color:var(--theme-gold)">STREAK: <span id="currentStreak">0</span> | WIN RATE: <span id="winRate">0%</span></div>
+          <div style="color:var(--theme-glow)" id="voiceIndicator">🎤 VOICE: OFF</div>
+          <div style="color:var(--theme-glow)">BET ID: <span id="currentPeriodId" style="font-family:'Orbitron'; color:var(--theme-gold);">---</span></div>
+        </div>
 
-        function getUniqueShayari(type) {
-            let pool = type === 'win' ? winPool : lossPool;
-            let base = type === 'win' ? baseWinShayaris : baseLossShayaris;
-            if (pool.length === 0) { pool = [...base]; }
-            const index = Math.floor(Math.random() * pool.length);
-            const selected = pool.splice(index, 1)[0];
-            if (type === 'win') winPool = pool; else lossPool = pool;
-            return selected;
-        }
+        <div class="history-section">
+          <table>
+            <thead>
+              <tr>
+                <th>PERIOD</th>
+                <th>AI PRED</th>
+                <th>RESULT</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody id="logs"></tbody>
+          </table>
+        </div>
+      </div>
+  </div>
 
-        function speakInQueue(phrases) {
-            if (!isGameInside || !('speechSynthesis' in window) || !warningAccepted) return;
-            window.speechSynthesis.cancel();
-            let index = 0;
-            function speakNext() {
-                if (index < phrases.length) {
-                    const ut = new SpeechSynthesisUtterance(phrases[index]);
-                    ut.lang = 'hi-IN'; ut.rate = 1.15;
-                    ut.onend = () => { index++; speakNext(); };
-                    window.speechSynthesis.speak(ut);
+  <div class="pass-overlay" id="lockOverlay" onclick="closeOverlayOutside(event)">
+    <div class="pass-box clickable-element" onclick="event.stopPropagation()">
+      <a href="https://t.me/+h5jDuTLxOEQ4NmVl" target="_blank" class="gate-tg-btn">📢 GET KEY ON TELEGRAM</a>
+      <h3>🔐 ENTER VIP ACCESS KEY</h3>
+      <input type="password" id="passInput" placeholder="ENTER SYSTEM KEY">
+      <button class="submit-btn" onclick="verifySecretPassword()">ENTER PANEL</button>
+    </div>
+  </div>
+
+  <div class="live-web-container">
+      <iframe src="https://bdgwinmy.cc//#/register?invitationCode=8261315097340"></iframe>
+  </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+const API_30S = "https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json";
+const API_1M = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json";
+
+let currentMode = "30S"; 
+let isUnlocked = false; 
+let voiceEnabled = false;
+let warningSpoken = false; 
+let audioPlayer = null;
+let isMusicPlaying = false;
+
+const NORMAL_MUSIC_VOLUME = 50; 
+const DUCKED_MUSIC_VOLUME = 15; 
+
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("loadingScreen").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("loadingScreen").style.visibility = "hidden";
+            const warning = document.getElementById("warningPopup");
+            warning.style.visibility = "visible";
+            warning.style.opacity = "1";
+            trySpeakWarning();
+        }, 500);
+    }, 3500);
+});
+
+function trySpeakWarning() {
+    if (warningSpoken) return; 
+    window.speechSynthesis.cancel();
+    let speech = new SpeechSynthesisUtterance("सिस्टम चेतावनी. पैनल एक्टिवेशन को पूरा करने के लिए नीचे दिए गए लिंक से रजिस्टर करें और न्यूनतम 500 रुपए डिपॉजिट करें।");
+    speech.lang = 'hi-IN'; speech.rate = 0.9;
+    window.speechSynthesis.speak(speech);
+    warningSpoken = true;
+}
+
+function closeWarningAndOpenPanel() {
+    document.getElementById("warningPopup").style.opacity = "0";
+    document.getElementById("warningPopup").style.visibility = "hidden";
+}
+
+function onYouTubeIframeAPIReady() {
+    audioPlayer = new YT.Player('youtube-audio-player', {
+        height: '0', width: '0', videoId: 'TQQ1Z0LatG4',
+        playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'TQQ1Z0LatG4', 'controls': 0 },
+        events: { 'onReady': (e) => { e.target.setVolume(NORMAL_MUSIC_VOLUME); } }
+    });
+}
+
+function toggleBackgroundMusic(event) {
+    event.stopPropagation();
+    if (!audioPlayer) return;
+    const musicBtn = document.getElementById("musicBtn");
+    if (!isMusicPlaying) {
+        audioPlayer.playVideo(); isMusicPlaying = true;
+        musicBtn.innerText = "⏸️ PAUSE MUSIC";
+    } else {
+        audioPlayer.pauseVideo(); isMusicPlaying = false;
+        musicBtn.innerText = "🎵 PLAY MUSIC";
+    }
+}
+
+function toggleVoiceEngine(event) {
+    if(!isUnlocked) return;
+    event.stopPropagation();
+    voiceEnabled = !voiceEnabled;
+    document.getElementById("voiceToggleBtn").innerText = voiceEnabled ? "🎤 VOICE: ON" : "🎤 VOICE: OFF";
+    document.getElementById("voiceIndicator").innerText = voiceEnabled ? "🎤 VOICE: ON" : "🎤 VOICE: OFF";
+    if(!voiceEnabled) window.speechSynthesis.cancel();
+}
+
+function playOriginalVoice(nextPrediction, gameStatus, nextPeriodText) {
+    if (!isUnlocked || !voiceEnabled) return;
+    window.speechSynthesis.cancel();
+    
+    let predHindi = (nextPrediction === "BIG") ? "बिग" : "स्मॉल";
+    let speechText = "";
+
+    if (gameStatus === "JACKPOT") speechText += "बधाई हो! जैकपॉट विन हुआ है। ";
+    else if (gameStatus === "WIN") speechText += "प्रेडिक्शन पास! विन हुआ है। ";
+    else if (gameStatus === "LOSS") speechText += "इस बार लॉस हुआ है। रिकवरी मोड ऑन। ";
+
+    speechText += `पीरियड नंबर ${nextPeriodText} का अगला प्रेडिक्शन है ${predHindi}.`;
+
+    let speech = new SpeechSynthesisUtterance(speechText);
+    speech.lang = 'hi-IN'; speech.rate = 0.92;
+    window.speechSynthesis.speak(speech);
+}
+
+// 📊 दोनों मोड्स का अलग-अलग पैरेलल बैकएंड डेटा स्ट्रक्चर
+let engine = {
+    "30S": { lastPeriod: "", predictedPeriod: "", currentPred: "WAIT", targetNums: ["-","-"], confidence: 95, wins: 0, losses: 0, streak: 0, logs: [], continuousLossCount: 0 },
+    "1M":  { lastPeriod: "", predictedPeriod: "", currentPred: "WAIT", targetNums: ["-","-"], confidence: 96, wins: 0, losses: 0, streak: 0, logs: [], continuousLossCount: 0 }
+};
+
+window.onload = () => {
+    startClockEngine();
+    setInterval(() => { fetchModeData("30S", API_30S); }, 1500);
+    setInterval(() => { fetchModeData("1M", API_1M); }, 1500);
+}
+
+function handleBtnClick(event) {
+    event.stopPropagation();
+    const card = document.getElementById("predictionCard");
+    if (card.classList.contains("active-mode")) {
+        card.classList.remove("active-mode");
+        document.getElementById("toggleBtn").innerText = "👁️ SHOW PANEL";
+    } else {
+        if (!isUnlocked) document.getElementById("lockOverlay").classList.add("show-lock");
+        else openPanelDirectly();
+    }
+}
+
+function verifySecretPassword() {
+    if (document.getElementById("passInput").value === "704215") {
+        isUnlocked = true; voiceEnabled = true;
+        document.getElementById("lockOverlay").classList.remove("show-lock");
+        openPanelDirectly();
+        document.getElementById("voiceToggleBtn").style.display = "block";
+        document.getElementById("voiceToggleBtn").innerText = "🎤 VOICE: ON";
+        document.getElementById("voiceIndicator").innerText = "🎤 VOICE: ON";
+    } else {
+        alert("❌ INVALID ACCESS KEY!");
+    }
+    document.getElementById("passInput").value = "";
+}
+
+function openPanelDirectly() {
+    document.getElementById("predictionCard").classList.add("active-mode");
+    document.getElementById("toggleBtn").innerText = "👁️ HIDE PANEL";
+}
+
+function switchGameMode(mode) {
+    if (currentMode === mode) return;
+    currentMode = mode;
+    document.getElementById("btn30s").classList.toggle("active", mode === "30S");
+    document.getElementById("btn1m").classList.toggle("active", mode === "1M");
+    document.getElementById("predTitle").innerText = `NEXT ISS. (${mode})`;
+    renderScreenUi();
+}
+
+function startClockEngine() {
+    setInterval(() => {
+        let sec = new Date().getSeconds();
+        let remaining = (currentMode === "30S") ? (30 - (sec % 30)) : (60 - sec);
+        document.getElementById("timer").textContent = "00:" + (remaining < 10 ? "0" + remaining : remaining);
+    }, 1000);
+}
+
+async function fetchModeData(mode, apiEndpoint) {
+    try {
+        const response = await fetch(apiEndpoint + "?t=" + Date.now());
+        const json = await response.json();
+        
+        if (json && json.data && json.data.list && json.data.list.length > 0) {
+            const latestNode = json.data.list[0];
+            const serverPeriod = latestNode.issueNumber.toString(); 
+            const actualNumber = parseInt(latestNode.number);
+            let mData = engine[mode];
+
+            if (serverPeriod !== mData.lastPeriod) {
+                let previousTargetNums = [...mData.targetNums];
+                let roundStatus = "NONE";
+
+                if (mData.predictedPeriod === serverPeriod && mData.currentPred !== "WAIT") {
+                    roundStatus = processParallelResult(mode, serverPeriod, actualNumber, previousTargetNums);
                 }
-            }
-            speakNext();
-        }
-
-        function triggerVoiceInit() {
-            if (!voiceTriggered && warningAccepted) {
-                voiceTriggered = true;
-                if ('speechSynthesis' in window) {
-                    const ut = new SpeechSynthesisUtterance("कैप्टन इंजन रेडी भाई");
-                    ut.lang = 'hi-IN'; window.speechSynthesis.speak(ut);
-                }
-            }
-        }
-
-        function togglePanel() {
-            const panel = document.getElementById('appPage');
-            const btn = document.getElementById('toggleBtn');
-            panel.classList.toggle('hidden');
-            btn.classList.toggle('panel-is-hidden', panel.classList.contains('hidden'));
-        }
-
-        function switchGameMode(mode) {
-            activeMode = mode;
-            document.getElementById('tab30').classList.toggle('active', mode === '30s');
-            document.getElementById('tab60').classList.toggle('active', mode === '1m');
-            document.getElementById('logs').innerHTML = gameState[mode].history;
-            updateUIFields(mode);
-        }
-
-        function updateUIFields(mode) {
-            document.getElementById('pRes').innerText = gameState[mode].currentSize;
-            document.getElementById('pNum').innerText = gameState[mode].currentNum;
-            document.getElementById('trendLabel').innerText = gameState[mode].nextPattern;
-        }
-
-        /* 🧠 MULTI-PATTERN DETECTOR WITH LIVE RECOVERY */
-        function isolatePatternBrain(list) {
-            if (!list || list.length < 5) return { size: "BIG", num: 7, riskPattern: "LIVE-SYNC" };
-            
-            const fullList = list.slice(0, 30);
-            const numbers = fullList.map(x => parseInt(x.number));
-            const sizes = fullList.map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
-
-            let sizePred = "BIG";
-            let patternType = "SERVER-MATCH";
-
-            if (isLevel2Active) {
-                sizePred = (sizes[0] === "BIG") ? "BIG" : "SMALL"; 
-                patternType = "RECOVERY-100%";
-                isLevel2Active = false; 
-            } else {
-                if (sizes[0] !== sizes[1] && sizes[1] !== sizes[2] && sizes[2] !== sizes[3]) {
-                    sizePred = (sizes[0] === "BIG") ? "SMALL" : "BIG";
-                    patternType = "LOOP-SWITCH";
-                }
-                else if (sizes[0] === sizes[1] && sizes[1] === sizes[2]) {
-                    sizePred = sizes[0]; 
-                    patternType = "DRAGON-FORCE";
-                } 
-                else {
-                    let bigWeight = 0, smallWeight = 0;
-                    sizes.forEach((s, idx) => {
-                        let weight = (30 - idx);
-                        if (idx < 5) weight *= 4; 
-                        if (s === "BIG") bigWeight += weight; else smallWeight += weight;
-                    });
-                    sizePred = (bigWeight >= smallWeight) ? "BIG" : "SMALL";
-                    patternType = "DEEP-TREND";
-                }
-            }
-
-            let sizePool = (sizePred === "BIG") ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-            let recentNumbers = numbers.slice(0, 3);
-            let targetNumPool = sizePool.filter(n => !recentNumbers.includes(n));
-
-            let numPred = targetNumPool.length > 0 
-                ? targetNumPool[Math.floor(Date.now() % targetNumPool.length)]
-                : sizePool[Math.floor(Date.now() % sizePool.length)];
-
-            return { size: sizePred, num: numPred, riskPattern: patternType };
-        }
-
-        async function startSystem() {
-            const key = document.getElementById('keyIn').value.trim();
-            if (key === "RAMU BHAI MOD V1") {
-                document.getElementById('err').innerText = "";
-                document.getElementById('authBlock').classList.add('hidden');
-                document.getElementById('toggleBtn').classList.remove('hidden'); 
-                document.getElementById('appPage').classList.remove('hidden');
                 
-                if (ytPlayer && typeof ytPlayer.playVideo === 'function') { ytPlayer.playVideo(); }
-                runParallelLogic();
-            } else { document.getElementById('err').innerText = "INVALID KEY!"; }
+                mData.predictedPeriod = (BigInt(serverPeriod) + 1n).toString();
+                
+                // 🧠 दोनों मोड्स के लिए अलग-अलग सेपरेट लॉजिक ट्रिगर
+                if (mode === "30S") calculate30SShortTrend(mode, json.data.list);
+                else calculate1MDeepTrend(mode, json.data.list);
+
+                mData.lastPeriod = serverPeriod;
+
+                if (currentMode === mode) {
+                    renderScreenUi();
+                    playOriginalVoice(mData.currentPred, roundStatus, mData.predictedPeriod.slice(-3));
+                }
+            }
         }
+    } catch (e) { console.log("Sync..."); }
+}
 
-        /* ⚡ SPEED ENGINE - 10 SECONDS PRE-FETCH SYNC */
-        function runParallelLogic() {
-            setInterval(async () => {
-                if (!warningAccepted) return;
-                ['30s', '1m'].forEach(async (mode) => {
-                    try {
-                        const res = await fetch(gameState[mode].url);
-                        const json = await res.json();
-                        if (json && json.data && json.data.list && json.data.list.length > 0) isGameInside = true; else return;
+// ⚡ 30 सेकंड का तेज़ी से बदलने वाला शार्ट-टर्म लॉजिक
+function calculate30SShortTrend(mode, list) {
+    let mData = engine[mode];
+    let t0 = parseInt(list[0].number) >= 5 ? "BIG" : "SMALL";
+    let t1 = parseInt(list[1].number) >= 5 ? "BIG" : "SMALL";
+    
+    let pred = (t0 === t1) ? t0 : (t0 === "BIG" ? "SMALL" : "BIG");
 
-                        const listData = json.data.list;
-                        const latest = listData[0];
-                        const actualNum = parseInt(latest.number);
-                        const actualSize = actualNum >= 5 ? "BIG" : "SMALL";
-                        const brain = isolatePatternBrain(listData);
+    if (mData.continuousLossCount >= 1) pred = (t0 === "BIG") ? "SMALL" : "BIG";
 
-                        if (gameState[mode].lastId !== latest.issueNumber) {
-                            if (gameState[mode].lastId && gameState[mode].loggedId !== latest.issueNumber) {
-                                gameState[mode].loggedId = latest.issueNumber;
-                                const isSizeWin = (gameState[mode].currentSize === actualSize);
-                                const isNumWin = (parseInt(gameState[mode].currentNum) === actualNum);
-                                let statusHTML = "", freshShayari = "", resultAnnouncement = "";
+    mData.currentPred = pred;
+    finalizeNumbersAndConf(mData);
+}
 
-                                if (isSizeWin) {
-                                    freshShayari = getUniqueShayari('win');
-                                    resultAnnouncement = isNumWin ? "जैकपॉट शॉट पास" : "शॉट पास हो गया भाई";
-                                    statusHTML = isNumWin ? `<span class="jackpot-win">JACKPOT</span>` : `<span class="win">WIN</span>`;
-                                    isLevel2Active = false;
-                                } else {
-                                    freshShayari = getUniqueShayari('loss');
-                                    resultAnnouncement = "शॉट मिस, अगला शॉट 100% लेवल 2 रिकवरी!";
-                                    statusHTML = `<span class="loss">LOSS</span>`;
-                                    isLevel2Active = true; 
-                                }
+// 🕒 1 मिनट का गहरा हिस्ट्री पैटर्न एनालिसिस लॉजिक
+function calculate1MDeepTrend(mode, list) {
+    let mData = engine[mode];
+    let subset = list.slice(0, 10);
+    let bigCount = subset.filter(x => parseInt(x.number) >= 5).length;
+    
+    let pred = (bigCount >= 5) ? "BIG" : "SMALL";
 
-                                const newRow = `<tr><td>${latest.issueNumber.slice(-3)}</td><td>${gameState[mode].currentSize + ' (' + gameState[mode].currentNum + ')'}</td><td>${actualNum}</td><td>${statusHTML}</td></tr>`;
-                                gameState[mode].history = newRow + gameState[mode].history;
+    if (mData.continuousLossCount >= 1) {
+        let t0 = parseInt(list[0].number) >= 5 ? "BIG" : "SMALL";
+        pred = (t0 === "BIG") ? "SMALL" : "BIG";
+    }
 
-                                if (activeMode === mode) {
-                                    document.getElementById('logs').innerHTML = gameState[mode].history;
-                                    document.getElementById('shayariBox').innerText = "✨ " + freshShayari;
-                                    // 🚀 10 सेकंड एडवांस वॉइस डिक्लेरेशन अलार्म
-                                    speakInQueue([resultAnnouncement, `एडवांस शॉट नोट करो भाई, यहाँ पर ${brain.size} खुलने वाला है!`]);
-                                }
-                            }
-                            gameState[mode].lastId = latest.issueNumber;
-                            gameState[mode].currentSize = brain.size;
-                            gameState[mode].currentNum = brain.num;
-                            gameState[mode].nextPattern = brain.riskPattern;
-                        }
-                        if (activeMode === mode) {
-                            document.getElementById('pID').innerText = (BigInt(latest.issueNumber) + 1n).toString().slice(-4);
-                            updateUIFields(mode);
-                        }
-                    } catch (e) {}
-                });
-            }, 150); 
+    mData.currentPred = pred;
+    finalizeNumbersAndConf(mData);
+}
+
+function finalizeNumbersAndConf(mData) {
+    let pool = mData.currentPred === "BIG" ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+    pool.sort(() => Math.random() - 0.5);
+    mData.targetNums = [pool[0], pool[1]];
+    mData.confidence = Math.floor(Math.random() * 5) + 95;
+}
+
+function processParallelResult(mode, checkedPeriod, actualNumber, previousTargetNums) {
+    const actualBS = actualNumber >= 5 ? "BIG" : "SMALL";
+    let mData = engine[mode];
+    let isWin = (mData.currentPred === actualBS);
+    let isRealJackpot = previousTargetNums.includes(actualNumber);
+
+    let statusText = "LOSS", statusClass = "loss", calculatedStatus = "LOSS";
+
+    if (isWin) {
+        mData.wins++; mData.streak++; mData.continuousLossCount = 0;
+        if (isRealJackpot) {
+            statusText = "🔥 JACKPOT"; statusClass = "jackpot-win"; calculatedStatus = "JACKPOT";
+        } else {
+            statusText = "WIN"; statusClass = "win"; calculatedStatus = "WIN";
         }
+    } else {
+        mData.losses++; mData.streak = 0; mData.continuousLossCount++;
+    }
 
-        function logout() { location.reload(); }
-        window.onload = () => {
-            document.getElementById('mandatoryAlert').classList.remove('hidden');
-            document.getElementById('authBlock').classList.remove('hidden');
-        };
-    </script>
+    mData.logs.unshift({ period: checkedPeriod.slice(-3), pred: mData.currentPred, resultStr: `${actualBS}(${actualNumber})`, status: statusText, clss: statusClass });
+    if (mData.logs.length > 5) mData.logs.pop();
+    return calculatedStatus;
+}
+
+function renderScreenUi() {
+    let mData = engine[currentMode];
+    document.getElementById("totalWins").innerText = mData.wins;
+    document.getElementById("totalLosses").innerText = mData.losses;
+    document.getElementById("currentStreak").innerText = mData.streak;
+    
+    let rate = Math.round((mData.wins / (mData.wins + mData.losses)) * 100) || 0;
+    document.getElementById("winRate").innerText = rate + "%";
+    document.getElementById("currentPeriodId").innerText = mData.predictedPeriod.slice(-3);
+    
+    const resEl = document.getElementById("result");
+    resEl.innerText = mData.currentPred;
+    resEl.style.color = mData.currentPred === "BIG" ? "var(--theme-green)" : "var(--theme-red)";
+    
+    document.getElementById("num1").innerText = mData.targetNums[0];
+    document.getElementById("num2").innerText = mData.targetNums[1];
+    document.getElementById("confText").innerText = mData.confidence + "%";
+    document.getElementById("confFill").style.width = mData.confidence + "%";
+
+    const tbody = document.getElementById("logs");
+    tbody.innerHTML = "";
+    mData.logs.forEach(log => {
+        let row = document.createElement("tr");
+        row.innerHTML = `<td>${log.period}</td><td>${log.pred}</td><td>${log.resultStr}</td><td class="${log.clss}">${log.status}</td>`;
+        tbody.appendChild(row);
+    });
+}
+</script>
 </body>
 </html>
